@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My CV Builder</title>
+<style>
+:root{--bg:#f4f5f7;--panel:#fff;--tx:#1d2330;--mut:#6b7385;--bd:#dde1e8;--ac:#2f4a7d;--inp:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171d;--panel:#1d222b;--tx:#e8ebf1;--mut:#9aa3b5;--bd:#2f3644;--ac:#7ea2e6;--inp:#262c38;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14171d;--panel:#1d222b;--tx:#e8ebf1;--mut:#9aa3b5;--bd:#2f3644;--ac:#7ea2e6;--inp:#262c38;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{display:flex;gap:8px;align-items:center;padding:10px 16px;background:var(--panel);border-bottom:1px solid var(--bd);flex-wrap:wrap}
+header h1{font-size:16px;margin:0 12px 0 0}
+button,select,input,textarea{font:inherit;color:var(--tx)}
+button{background:var(--panel);border:1px solid var(--bd);border-radius:6px;padding:6px 12px;cursor:pointer}
+button:hover{border-color:var(--ac)}
+button.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
+:root[data-theme="dark"] button.pri,:root:not([data-theme="light"]) button.pri{color:#111}
+button.on{border-color:var(--ac);color:var(--ac);font-weight:600}
+input,textarea,select{background:var(--inp);border:1px solid var(--bd);border-radius:6px;padding:7px 9px;width:100%}
+textarea{min-height:90px;resize:vertical}
+label{display:block;font-size:12px;color:var(--mut);margin:8px 0 3px}
+.sp{flex:1}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+.card{background:var(--panel);border:1px solid var(--bd);border-radius:10px;padding:14px;margin-bottom:14px}
+.card h2{font-size:15px;margin:0 0 6px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+@media(max-width:600px){.g2{grid-template-columns:1fr}}
+.row{display:flex;gap:8px;align-items:center}
+.item{display:flex;gap:10px;justify-content:space-between;align-items:flex-start;border-top:1px solid var(--bd);padding:8px 0}
+.item small{color:var(--mut)}
+.ph{width:72px;height:72px;border-radius:0;object-fit:cover;background:var(--bd)}
+
+/* builder layout */
+#build{display:grid;grid-template-columns:340px 1fr;height:calc(100vh - 54px)}
+@media(max-width:800px){#build{grid-template-columns:1fr;height:auto}}
+#left{overflow:auto;padding:12px;border-right:1px solid var(--bd);background:var(--panel)}
+#right{overflow:auto;padding:12px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.grp{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:12px 0 4px}
+.src{display:flex;gap:8px;justify-content:space-between;align-items:center;border:1px solid var(--bd);border-radius:8px;padding:6px 8px;margin-bottom:5px}
+.src.used{opacity:.5}
+.src span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tool{display:flex;gap:8px;flex-wrap:wrap;align-items:center;width:100%;max-width:794px}
+.tool input[type=text]{flex:1;min-width:160px}
+.tool input[type=color]{width:38px;padding:2px;height:34px}
+#pagebox{transform-origin:top center}
+#page{width:794px;min-height:1123px;background:#fff;color:#1a1a1a;padding:44px 48px;box-shadow:0 2px 14px rgba(0,0,0,.25);font:12.5px/1.45 Calibri,Arial,sans-serif}
+#page h1{margin:0;font-size:26px;color:var(--cvac)}
+#page .hl{font-size:14px;color:#444;margin-top:2px}
+
+/* Contact line */
+#page .ct{font-size:11.5px;color:#333;margin-top:7px;display:flex;flex-wrap:wrap;align-items:center;line-height:1.4}
+#page .ct-item{display:inline-flex;align-items:center;color:#333;text-decoration:none;white-space:nowrap}
+#page a.ct-item{color:#333;text-decoration:none}
+#page a.ct-item:hover{text-decoration:underline}
+#page .ct-sep{margin:0 7px;color:#888;font-size:10px}
+#page .ct-ico{width:12px;height:12px;margin-right:4px;vertical-align:-1.5px;flex-shrink:0;fill:currentColor}
+
+/* CV Sections & Items */
+#page h3{margin:14px 0 6px;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--cvac,#1d2330);border-bottom:1.5px solid var(--cvac,#1d2330);padding-bottom:2px}
+#page .it{position:relative;margin-bottom:8px}
+#page .it-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+#page .t{font-weight:700;font-size:13px}
+#page .t a{color:#1a1a1a;text-decoration:underline;text-decoration-color:var(--cvac)}
+#page .d{font-size:11.5px;font-weight:600;color:#555;white-space:nowrap;margin-left:auto;text-align:right}
+#page .s{color:#555;font-size:11.5px;margin-top:1px}
+#page ul{margin:2px 0 0;padding-left:18px}
+#page p{margin:2px 0 0}
+#page .top{display:flex;justify-content:space-between;gap:16px;align-items:center}
+#page .top img{width:92px;height:92px;border-radius:0;object-fit:cover}
+
+/* 2-column technologies layout */
+#page .tech-cols{columns:2;column-gap:24px;margin-bottom:4px}
+#page .tech-item{break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;display:block;margin-bottom:6px;font-size:12px;line-height:1.45;position:relative}
+#page .tech-item b{color:#111;font-weight:700}
+
+/* Left panel collapsible groups */
+.grp-wrap{margin-bottom:8px}
+.grp-hdr{display:flex;justify-content:space-between;align-items:center;width:100%;padding:8px 10px;background:var(--bg);border:1px solid var(--bd);border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;color:var(--tx);text-align:left}
+.grp-hdr:hover{border-color:var(--ac)}
+.grp-ind{font-size:14px;font-weight:700;color:var(--mut)}
+.grp-body{padding-top:6px;display:flex;flex-direction:column;gap:5px}
+
+.ctl{position:absolute;right:0;top:0;display:none;gap:3px;z-index:2}
+.it:hover .ctl{display:flex}
+.ctl button{padding:1px 7px;font-size:12px;background:#fff;color:#222;border-color:#bbb}
+.empty{color:#999;text-align:center;margin-top:120px}
+
+@media print{
+ @page{size:A4;margin:0}
+ body *{visibility:hidden}
+ #page,#page *{visibility:visible}
+ #page{position:absolute;left:0;top:0;box-shadow:none;width:210mm;min-height:297mm;padding:12mm 14mm}
+ #pagebox{transform:none!important;height:auto!important;width:auto!important;margin:0!important}
+ .ctl,.empty{display:none!important}
+}
+</style>
+</head>
+<body>
+<header>
+ <h1>My CV Builder</h1>
+ <button id="tInfo" class="on">1. My Info</button>
+ <button id="tCV">2. Create CV</button>
+ <span class="sp"></span>
+ <button id="exp">Export backup</button>
+ <button id="imp">Import backup</button>
+ <input id="impf" type="file" accept=".json" hidden>
+</header>
+<div id="view"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const url=u=>!u?'':(/^(https?:|mailto:|tel:)/.test(u)?u:'https://'+u);
+const TYPES=[['technologies','Technologies'],['project','Projects'],['experience','Experience'],['education','Education'],['other','Other']];
+const KEY='cvbuilder.v1';
+let S;
+
+const ICONS={
+ phone:`<svg class="ct-ico" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>`,
+ email:`<svg class="ct-ico" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`,
+ pin:`<svg class="ct-ico" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>`,
+ github:`<svg class="ct-ico" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>`,
+ linkedin:`<svg class="ct-ico" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.2a1.66 1.66 0 0 0-1.66 1.66 1.66 1.66 0 0 0 1.66 1.66 1.66 1.66 0 0 0 1.66-1.66A1.66 1.66 0 0 0 7.83 6.2z"/></svg>`
+};
+
+function extractUser(u){
+ if(!u)return'';
+ let clean=String(u).split(/[?#]/)[0].replace(/\/+$/,'');
+ const parts=clean.split('/').filter(Boolean);
+ return parts.length?parts[parts.length-1]:clean;
+}
+
+function seed(){
+ return{
+  profile:{name:'Yassine Maftah',phone:'+212 610511207',email:'yassinmaftah06@gmail.com',city:'Agadir, Morocco',github:'github.com/yassinmaftah',linkedin:'linkedin.com/in/yassine-maftah-b5793933b/',langs:'Arabic: Native\nFrench: B2\nEnglish: B2',photo:''},
+  items:[
+   {id:'t1',type:'technologies',title:'Front-End',link:'',sub:'',date:'',text:'HTML / CSS - JavaScript / React - Bootstrap - Tailwind CSS'},
+   {id:'t2',type:'technologies',title:'Back-End',link:'',sub:'',date:'',text:'PHP / Laravel - Python / FastAPI - MySQL - PostgreSQL'},
+   {id:'t3',type:'technologies',title:'Bases de données',link:'',sub:'',date:'',text:'MySQL - PostgreSQL - MongoDB - Redis'},
+   {id:'t4',type:'technologies',title:'Machine Learning',link:'',sub:'',date:'',text:'Scikit-Learn - PyTorch - Pandas - NumPy'},
+   {id:'t5',type:'technologies',title:'MLOps & Déploiement',link:'',sub:'',date:'',text:'Docker - Git / GitHub - CI/CD - Linux'},
+   {id:'a1',type:'project',title:'Allo Maalem',date:'2026',link:'github.com/yassinmaftah',sub:'Laravel, Tailwind CSS',text:'- Full-stack marketplace connecting clients with skilled artisans'},
+   {id:'a2',type:'experience',title:'Web Development Intern, InticSolutions',date:'06/2026 - 09/2026',link:'',sub:'Agadir',text:'- Backend development of WavePMS, a surf camp management platform (Laravel, PostgreSQL)'}
+  ],
+  cvs:[{id:'c1',name:'Master CV',headline:'Full-Stack Developer',ids:['t1','t2','t3','t4','t5','a2','a1'],accent:'#2f4a7d',photo:true}],
+  cur:'c1',
+  tab:'info'
+ };
+}
+
+function load(){
+ try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+ if(!S||!S.profile)S=seed();
+ if(S&&S.items){
+  S.items.forEach(i=>{
+   if(i.type==='skills')i.type='technologies';
+   if(i.date==null)i.date='';
+  });
+ }
+}
+
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){alert('Could not save (storage full or blocked). Use Export backup.')}}
+const uid=()=>Math.random().toString(36).slice(2,9);
+const cv=()=>S.cvs.find(c=>c.id===S.cur)||S.cvs[0];
+
+/* ---------- INFO TAB ---------- */
+const PF=[['name','Full name'],['phone','Phone'],['email','Email'],['city','City, Country'],['github','GitHub link'],['linkedin','LinkedIn link']];
+let editing=null, editingTech=null;
+
+function viewInfo(){
+ $('#view').innerHTML=`<div class="wrap">
+ <div class="card"><h2>Personal info</h2>
+  <div class="row" style="margin-bottom:6px"><img class="ph" id="ph" alt=""><div><input type="file" id="pf" accept="image/*"><small style="color:var(--mut)">Profile photo (stays in your browser)</small></div></div>
+  <div class="g2">${PF.map(([k,l])=>`<div><label>${l}</label><input data-p="${k}" value="${esc(S.profile[k])}"></div>`).join('')}</div>
+  <label>Languages (one per line)</label><textarea data-p="langs" style="min-height:70px">${esc(S.profile.langs)}</textarea>
+ </div>
+
+ <div class="card">
+  <h2 id="techH">Technologies</h2>
+  <div class="g2">
+   <div><label>Category title (example: Front-End, Back-End, Bases de données...)</label><input id="techCat" placeholder="Front-End"></div>
+   <div><label>Technologies (example: HTML / CSS - JavaScript / React...)</label><input id="techList" placeholder="HTML / CSS - JavaScript / React - Bootstrap - Tailwind CSS"></div>
+  </div>
+  <div class="row" style="margin-top:10px">
+   <button class="pri" id="techSave">Save Category</button>
+   <button id="techCancel" hidden>Cancel</button>
+  </div>
+ </div>
+
+ <div class="card"><h2 id="fh">Add info (Projects, Experience, Education, Other)</h2>
+  <div class="g2">
+   <div><label>Type</label><select id="ft">${TYPES.filter(([t])=>t!=='technologies').map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></div>
+   <div><label>Title (clickable if you add a link)</label><input id="fti"></div>
+   <div><label>Date (optional, e.g. 2026 or 05/2026 - 07/2026)</label><input id="fdt" placeholder="2026 or 05/2026 - 07/2026"></div>
+   <div><label>Link (optional)</label><input id="fl" placeholder="github.com/..."></div>
+   <div style="grid-column:1/-1"><label>Small line (company, role, tech stack...)</label><input id="fs"></div>
+  </div>
+  <label>Text (start a line with "- " for a bullet point)</label><textarea id="fx"></textarea>
+  <div class="row" style="margin-top:10px"><button class="pri" id="fsave">Save</button><button id="fcancel" hidden>Cancel</button></div>
+ </div>
+
+ <div class="card"><h2>Saved info</h2><div id="list"></div></div></div>`;
+
+ setPh();
+ document.querySelectorAll('[data-p]').forEach(i=>i.oninput=()=>{S.profile[i.dataset.p]=i.value;save()});
+ $('#pf').onchange=e=>photo(e.target.files[0]);
+
+ $('#techSave').onclick=saveTech;
+ $('#techCancel').onclick=clearTech;
+
+ $('#fsave').onclick=saveItem;
+ $('#fcancel').onclick=clearForm;
+
+ $('#list').onclick=e=>{
+  const b=e.target.closest('button');if(!b)return;
+  const id=b.dataset.id;
+  if(b.dataset.a==='del'&&confirm('Delete this item?')){
+   S.items=S.items.filter(i=>i.id!==id);
+   S.cvs.forEach(c=>c.ids=c.ids.filter(x=>x!==id));
+   save();list();
+  }
+  if(b.dataset.a==='edit'){
+   const i=S.items.find(i=>i.id===id);
+   if(!i)return;
+   if(i.type==='technologies'){
+    editingTech=id;
+    $('#techCat').value=i.title;
+    $('#techList').value=i.text;
+    $('#techH').textContent='Edit Technology Category';
+    $('#techCancel').hidden=false;
+    $('#techCat').focus();
+    $('#techCat').scrollIntoView({behavior:'smooth',block:'center'});
+   }else{
+    editing=id;
+    $('#ft').value=i.type;
+    $('#fti').value=i.title;
+    $('#fdt').value=i.date||'';
+    $('#fl').value=i.link||'';
+    $('#fs').value=i.sub||'';
+    $('#fx').value=i.text||'';
+    $('#fh').textContent='Edit item';
+    $('#fcancel').hidden=false;
+    $('#fti').focus();
+    $('#fti').scrollIntoView({behavior:'smooth',block:'center'});
+   }
+  }
+ };
+ list();
+}
+
+function clearTech(){
+ editingTech=null;
+ $('#techCat').value='';
+ $('#techList').value='';
+ $('#techH').textContent='Technologies';
+ $('#techCancel').hidden=true;
+}
+
+function saveTech(){
+ const title=$('#techCat').value.trim();
+ const text=$('#techList').value.trim();
+ if(!title){alert('Please write a category title');return}
+ if(editingTech){
+  const item=S.items.find(i=>i.id===editingTech);
+  if(item){item.title=title;item.text=text}
+ }else{
+  S.items.push({id:uid(),type:'technologies',title,text,link:'',sub:'',date:''});
+ }
+ save();clearTech();list();
+}
+
+function clearForm(){
+ editing=null;
+ ['fti','fdt','fl','fs','fx'].forEach(i=>$('#'+i).value='');
+ $('#fh').textContent='Add info (Projects, Experience, Education, Other)';
+ $('#fcancel').hidden=true;
+}
+
+function saveItem(){
+ const o={
+  type:$('#ft').value,
+  title:$('#fti').value.trim(),
+  date:$('#fdt').value.trim(),
+  link:$('#fl').value.trim(),
+  sub:$('#fs').value.trim(),
+  text:$('#fx').value.trim()
+ };
+ if(!o.title){alert('Please write a title');return}
+ if(editing)Object.assign(S.items.find(i=>i.id===editing),o);
+ else S.items.push({id:uid(),...o});
+ save();clearForm();list();
+}
+
+function list(){
+ $('#list').innerHTML=S.items.length?TYPES.map(([t,l])=>{
+  const a=S.items.filter(i=>i.type===t);
+  if(!a.length)return'';
+  return `<div class="grp">${l}</div>`+a.map(i=>{
+   let desc='';
+   if(t==='technologies'){
+    desc=`<b>${esc(i.title)}</b> : <small style="color:var(--tx)">${esc(i.text)}</small>`;
+   }else{
+    desc=`<b>${esc(i.title)}</b> ${i.date?`<small style="color:var(--mut)">(${esc(i.date)})</small>`:''} ${i.link?'<small>🔗</small>':''}<br><small>${esc(i.sub)}</small>`;
+   }
+   return `<div class="item"><div>${desc}</div><div class="row"><button data-a="edit" data-id="${i.id}">Edit</button><button data-a="del" data-id="${i.id}">Delete</button></div></div>`;
+  }).join('');
+ }).join(''):'<small>Nothing saved yet.</small>';
+}
+
+function setPh(){const p=$('#ph');if(p){p.src=S.profile.photo||'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='}}
+function photo(f){if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const m=Math.min(im.width,im.height),c=document.createElement('canvas');c.width=c.height=300;c.getContext('2d').drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,300,300);S.profile.photo=c.toDataURL('image/jpeg',.85);save();setPh()};im.src=r.result};r.readAsDataURL(f)}
+
+/* ---------- CV TAB ---------- */
+const openGroups=new Set();
+
+function viewCV(){
+ const c=cv();
+ $('#view').innerHTML=`<div id="build"><div id="left"></div><div id="right">
+ <div class="tool"><select id="cs" style="width:auto">${S.cvs.map(x=>`<option value="${x.id}" ${x.id===c.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select>
+  <button id="cn">New CV</button><button id="cd">Delete</button><button id="cr">Rename</button></div>
+ <div class="tool"><input type="text" id="hl" placeholder="Headline (e.g. Full-Stack Developer)" value="${esc(c.headline)}">
+  <input type="color" id="ac" value="${c.accent}" title="Accent color">
+  <label style="margin:0"><input type="checkbox" id="sp" ${c.photo?'checked':''} style="width:auto"> Photo</label>
+  <button class="pri" id="pdf">Download PDF</button></div>
+ <div id="pagebox"><div id="page"></div></div></div></div>`;
+
+ $('#cs').onchange=e=>{S.cur=e.target.value;save();viewCV()};
+ $('#cn').onclick=()=>{const n=prompt('Name of the new CV (e.g. AI/ML Engineer)');if(!n)return;const d={id:uid(),name:n,headline:'',ids:[],accent:c.accent,photo:c.photo};S.cvs.push(d);S.cur=d.id;save();viewCV()};
+ $('#cr').onclick=()=>{const n=prompt('New name',c.name);if(n){c.name=n;save();viewCV()}};
+ $('#cd').onclick=()=>{if(S.cvs.length<2){alert('You need at least one CV');return}if(confirm('Delete this CV? (your saved info stays)')){S.cvs=S.cvs.filter(x=>x!==c);S.cur=S.cvs[0].id;save();viewCV()}};
+ $('#hl').oninput=e=>{c.headline=e.target.value;save();page()};
+ $('#ac').oninput=e=>{c.accent=e.target.value;save();page()};
+ $('#sp').onchange=e=>{c.photo=e.target.checked;save();page()};
+ $('#pdf').onclick=()=>{alert('In the print window choose "Save as PDF" as destination, and turn OFF "Headers and footers".');window.print()};
+
+ $('#left').onclick=e=>{
+  const b=e.target.closest('button');if(!b)return;
+  const grp=b.dataset.grp;
+  if(grp){
+   if(openGroups.has(grp))openGroups.delete(grp);
+   else openGroups.add(grp);
+   left();
+   return;
+  }
+  const id=b.dataset.id;
+  if(id){
+   c.ids=c.ids.includes(id)?c.ids.filter(x=>x!==id):[...c.ids,id];
+   save();left();page();
+  }
+ };
+
+ $('#pagebox').onclick=e=>{
+  const b=e.target.closest('button');if(!b)return;
+  const id=b.dataset.id, a=b.dataset.a;
+  if(a==='rm'){
+   c.ids=c.ids.filter(x=>x!==id);
+  }else{
+   const it=S.items.find(i=>i.id===id);
+   if(!it)return;
+   const t=it.type;
+   const g=c.ids.filter(x=>{const item=S.items.find(i=>i.id===x);return item&&item.type===t});
+   const k=g.indexOf(id);
+   const o=g[k+(a==='up'?-1:1)];
+   if(o){
+    const i1=c.ids.indexOf(id), i2=c.ids.indexOf(o);
+    [c.ids[i1],c.ids[i2]]=[c.ids[i2],c.ids[i1]];
+   }
+  }
+  save();left();page();
+ };
+
+ left();page();
+}
+
+function left(){
+ const c=cv();
+ let h=`<b>Click an item to add it to the page</b>
+ <div class="grp">Always on the page</div>
+ <div class="src used"><span>Name, contacts, languages</span></div>`;
+
+ TYPES.forEach(([t,l])=>{
+  const a=S.items.filter(i=>i.type===t);
+  const isOpen=openGroups.has(t);
+  h+=`<div class="grp-wrap">
+   <button type="button" class="grp-hdr" data-grp="${t}">
+    <span>${l} (${a.length})</span>
+    <span class="grp-ind">${isOpen?'−':'+'}</span>
+   </button>`;
+  if(isOpen){
+   h+=`<div class="grp-body">`;
+   if(!a.length){
+    h+=`<div style="padding:6px 8px;color:var(--mut);font-size:12px">No items saved yet.</div>`;
+   }else{
+    a.forEach(i=>{
+     const u=c.ids.includes(i.id);
+     h+=`<div class="src ${u?'used':''}">
+      <span title="${esc(i.title)}">${esc(i.title)}</span>
+      <button data-id="${i.id}">${u?'Remove':'+ Add'}</button>
+     </div>`;
+    });
+   }
+   h+=`</div>`;
+  }
+  h+=`</div>`;
+ });
+
+ $('#left').innerHTML=h;
+}
+
+function fmt(t){if(!t)return'';const L=t.split('\n').filter(x=>x.trim());let h='',ul=false;L.forEach(l=>{if(/^\s*[-•]\s+/.test(l)){if(!ul){h+='<ul>';ul=true}h+='<li>'+esc(l.replace(/^\s*[-•]\s+/,''))+'</li>'}else{if(ul){h+='</ul>';ul=false}h+='<p>'+esc(l)+'</p>'}});return h+(ul?'</ul>':'')}
+
+function page(){
+ const c=cv(), p=S.profile, pg=$('#page');
+ pg.style.setProperty('--cvac',c.accent);
+
+ const ct=[];
+ if(p.phone) ct.push(`<span class="ct-item">${ICONS.phone}<span>${esc(p.phone)}</span></span>`);
+ if(p.email) ct.push(`<a class="ct-item" href="mailto:${esc(p.email)}">${ICONS.email}<span>${esc(p.email)}</span></a>`);
+ if(p.city) ct.push(`<span class="ct-item">${ICONS.pin}<span>${esc(p.city)}</span></span>`);
+ if(p.github) ct.push(`<a class="ct-item" href="${esc(url(p.github))}" target="_blank" rel="noopener">${ICONS.github}<span>${esc(extractUser(p.github))}</span></a>`);
+ if(p.linkedin) ct.push(`<a class="ct-item" href="${esc(url(p.linkedin))}" target="_blank" rel="noopener">${ICONS.linkedin}<span>${esc(extractUser(p.linkedin))}</span></a>`);
+
+ let h=`<div class="top"><div><h1>${esc(p.name)}</h1><div class="hl">${esc(c.headline)}</div><div class="ct">${ct.join('<span class="ct-sep">|</span>')}</div></div>${c.photo&&p.photo?`<img src="${p.photo}" alt="">`:''}</div>`;
+
+ let any=false;
+ TYPES.forEach(([t,l])=>{
+  const a=c.ids.map(id=>S.items.find(i=>i.id===id)).filter(i=>i&&i.type===t);
+  if(!a.length)return;
+  any=true;
+  const secTitle=t==='technologies'?'Compétences Techniques':l;
+  h+=`<h3>${secTitle}</h3>`;
+  if(t==='technologies'){
+   h+=`<div class="tech-cols">`+a.map(i=>`<div class="tech-item it"><div class="ctl"><button data-a="up" data-id="${i.id}">↑</button><button data-a="down" data-id="${i.id}">↓</button><button data-a="rm" data-id="${i.id}">✕</button></div><b>${esc(i.title.replace(/\s*:?\s*$/,''))} :</b> ${esc(i.text)}</div>`).join('')+`</div>`;
+  }else{
+   h+=a.map(i=>`<div class="it"><div class="ctl"><button data-a="up" data-id="${i.id}">↑</button><button data-a="down" data-id="${i.id}">↓</button><button data-a="rm" data-id="${i.id}">✕</button></div><div class="it-head"><span class="t">${i.link?`<a href="${esc(url(i.link))}" target="_blank">${esc(i.title)}</a>`:esc(i.title)}</span>${i.date?`<span class="d">${esc(i.date)}</span>`:''}</div>${i.sub?`<div class="s">${esc(i.sub)}</div>`:''}${fmt(i.text)}</div>`).join('');
+  }
+ });
+
+ if(p.langs&&p.langs.trim()) h+=`<h3>Languages</h3><p>${p.langs.split('\n').filter(x=>x.trim()).map(esc).join(' &nbsp;•&nbsp; ')}</p>`;
+ if(!any) h+='<div class="empty">Click “+ Add” on the left to put items on this page</div>';
+ pg.innerHTML=h;
+ fit();
+}
+
+function fit(){const b=$('#pagebox'),pg=$('#page');if(!b)return;const av=($('#right').clientWidth||800)-24,k=Math.min(1,av/794);b.style.transform=`scale(${k})`;b.style.height=(pg.offsetHeight*k)+'px';b.style.width='794px';b.style.marginBottom='0'}
+addEventListener('resize',fit);
+
+/* ---------- shell ---------- */
+function tab(t){S.tab=t;save();$('#tInfo').classList.toggle('on',t==='info');$('#tCV').classList.toggle('on',t==='cv');t==='info'?viewInfo():viewCV()}
+$('#tInfo').onclick=()=>tab('info');$('#tCV').onclick=()=>tab('cv');
+$('#exp').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='cv-backup.json';a.click()};
+$('#imp').onclick=()=>$('#impf').click();
+$('#impf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.profile||!d.items||!d.cvs)throw 0;S=d;if(S.items){S.items.forEach(i=>{if(i.type==='skills')i.type='technologies';if(i.date==null)i.date='';})};save();tab('info')}catch(x){alert('Invalid backup file')}};r.readAsText(f)};
+load();tab(S.tab||'info');
+</script>
+</body>
+</html>
