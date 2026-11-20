@@ -110,13 +110,13 @@ label{display:block;font-size:12px;color:var(--mut);margin:8px 0 3px}
 </head>
 <body>
 <header>
- <h1>My CV Builder</h1>
+ <h1>My CV Builder <small style="font-size:10px;color:var(--mut);font-weight:400">v2.1 · EN/FR</small></h1>
  <button id="tInfo" class="on">1. My Info</button>
  <button id="tCV">2. Create CV</button>
  <span class="sp"></span>
  <button id="exp">Export backup</button>
- <button id="imp">Import backup</button>
-  <button id="impProjects" title="Merge projects without replacing existing CVs">Import projects</button>
+ <button id="imp" title="Import a full backup or a project list">Import JSON / Backup</button>
+  <button id="impProjects" class="pri" title="Merge projects without replacing existing CVs">+ Import projects (EN / FR)</button>
   <input id="projectFile" type="file" accept=".json" hidden>
  <input id="impf" type="file" accept=".json" hidden>
 </header>
@@ -681,52 +681,71 @@ addEventListener('resize',fit);
 function tab(t){S.tab=t;save();$('#tInfo').classList.toggle('on',t==='info');$('#tCV').classList.toggle('on',t==='cv');t==='info'?viewInfo():viewCV()}
 $('#tInfo').onclick=()=>tab('info');$('#tCV').onclick=()=>tab('cv');
 $('#exp').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,2)],{type:'application/json'}));a.download='cv-backup.json';a.click()};
-// Import project-only files by ID without deleting other saved information or CVs.
+// Built-in translations for the 12 original portfolio projects.
+// When importing a legacy English-only file, translations are filled without
+// overwriting any existing manually written French values.
+const PROJECT_TRANSLATIONS={"proj-allomaalem":{"title":"Allo Maalem","sub":"Laravel 12, PHP 8.2, MySQL 8.0, Tailwind CSS, API Stripe, Docker","text":"- Développement de portails par rôle pour les clients et les artisans avec middleware personnalisé et gestion des quotas mensuels.\n- Mise en place d'un processus d'attribution des propositions sécurisé contre les accès concurrents grâce aux transactions en base de données.\n- Intégration de l'API Stripe pour les abonnements à plusieurs niveaux et la facturation automatique des artisans."},"proj-brainscan":{"title":"BrainScan AI","sub":"Python 3.11, TensorFlow 2.17, Streamlit, Docker, OpenCV, Scikit-learn","text":"- Développement d'un CNN personnalisé à trois blocs pour classer quatre catégories d'IRM cérébrales, avec une précision de 96,51 % sur un jeu de test de 7 023 images.\n- Mise en place d'un mécanisme de triage utilisant un seuil de confiance de 70 % pour signaler les cas ambigus nécessitant une vérification.\n- Conteneurisation de l'interface Streamlit et du laboratoire Jupyter avec une architecture Docker Compose multi-services."},"proj-deliveryeta":{"title":"DeliveryETA","sub":"Python 3.12, Scikit-learn, Streamlit, Pandas, NumPy, Docker","text":"- Création de variables géospatiales à partir de la formule de Haversine et calcul du temps de préparation avec gestion du passage à minuit.\n- Entraînement et optimisation d'un modèle Random Forest atteignant un R² de 0,764 et une erreur absolue moyenne de 3,53 minutes, avec validation croisée à cinq plis.\n- Déploiement d'une application Streamlit utilisant un ColumnTransformer commun pour éviter les fuites de données."},"proj-diabetes-mlops":{"title":"Diabetes Risk MLOps","sub":"Python, Scikit-learn, FastAPI, Streamlit, MLflow, Apache Airflow, Docker","text":"- Construction d'un pipeline de machine learning combinant imputation KNN, clustering K-Means et régression logistique.\n- Orchestration du réentraînement automatique avec Apache Airflow et suivi des expériences via le registre de modèles MLflow.\n- Conteneurisation d'un microservice d'inférence FastAPI avec validation Pydantic et interface interactive Streamlit."},"proj-easycoloc":{"title":"EasyColoc","sub":"Laravel 12, PHP 8.2, Blade, Tailwind CSS, MariaDB, Docker","text":"- Automatisation du partage équitable des dépenses et du suivi des dettes bilatérales en temps réel, avec règlement en un clic.\n- Création d'un score de réputation entre colocataires et réattribution transactionnelle des dettes lors du départ d'un membre.\n- Mise en place d'un contrôle d'accès par rôles (administrateur, propriétaire, membre) et d'invitations par e-mail sécurisées par jeton."},"proj-neuroscan":{"title":"NeuroScan-AI","sub":"Python, TensorFlow, InceptionV3, YOLOv8s, FastAPI, Streamlit, MLflow, Airflow, Docker","text":"- Ajustement d'InceptionV3 pour la classification d'IRM cérébrales avec 96,3 % de précision sur le jeu de test et entraînement de YOLOv8s pour la localisation des tumeurs.\n- Automatisation de la préparation des données, de l'entraînement et de l'évaluation avec un DAG Apache Airflow de huit tâches.\n- Exposition de deux API REST via FastAPI, suivi des modèles dans MLflow et déploiement d'une interface Streamlit."},"proj-meteorisk":{"title":"s-MeteoRisk","sub":"Python 3.11, Apache Airflow, PostgreSQL 16, SQLAlchemy, Streamlit, Docker","text":"- Extraction de prévisions via l'API REST Open-Meteo et structuration des données PostgreSQL en couches Bronze, Silver et Gold.\n- Conception d'un indice de risque combinant les seuils de rafales de vent, les probabilités de pluie et les températures extrêmes.\n- Orchestration de pipelines ETL quotidiens avec Apache Airflow et visualisation des risques pour 120 villes marocaines dans Streamlit."},"proj-satas-bus":{"title":"SATAS Bus","sub":"Laravel 12, PHP 8.2, MariaDB, Tailwind CSS, Alpine.js, Dompdf, Docker","text":"- Développement d'une recherche de trajets avec correspondances entre 20 villes marocaines et calcul dynamique des tarifs par segment.\n- Application d'une limite de 50 passagers et sécurisation de l'attribution des sièges contre les réservations concurrentes.\n- Génération automatisée de billets électroniques PDF côté serveur et gestion des annulations en libre-service."},"proj-virtualworkspace":{"title":"Workspace Manager","sub":"JavaScript natif, HTML5, CSS3, LocalStorage","text":"- Développement côté client de la gestion CRUD des employés, avec validation des saisies en temps réel et persistance LocalStorage.\n- Mise en place de contraintes de capacité des salles et de filtres d'accès par rôle pour optimiser l'affectation des employés.\n- Conception d'un plan interactif affichant l'occupation et les places disponibles en temps réel."},"proj-wavepms":{"title":"WavePMS","sub":"Laravel 12, PostgreSQL, stancl/tenancy, Filament 5, Livewire 3, Tailwind CSS, Docker","text":"- Conception d'une architecture SaaS multi-tenant avec isolation des schémas PostgreSQL via stancl/tenancy.\n- Développement de huit tableaux de bord par rôle avec Filament et Livewire pour l'accueil, les moniteurs et la cuisine.\n- Intégration d'un portail client par lien magique, de la signature de décharges numériques et du suivi des retards de vol via API externes."},"proj-quranplatform":{"title":"QuranPlatform","sub":"Laravel 12, React 19, Vite 8, Tailwind CSS v4, SQLite/MySQL, Sanctum, Docker","text":"- Développement d'une API REST Laravel 12 découplée avec authentification Sanctum et d'une SPA React 19 stylisée avec Tailwind CSS v4.\n- Création d'un suivi interactif de mémorisation du Coran avec mandala de progression sur 240 Thumon et calendriers de régularité.\n- Intégration d'une bibliothèque vidéo de tafsir via YouTube oEmbed et d'une interface d'administration pour la modération."},"proj-youcode":{"title":"YouCode","sub":"Laravel 12, React 19, Vite 8, Tailwind CSS v4, Dompdf, Docker","text":"- Développement d'un pipeline de recrutement ATS de type Kanban par glisser-déposer, avec étapes personnalisables et suivi des échéances.\n- Création d'un fil interactif de quiz et de sondages avec animations de vote en temps réel et explications immédiates.\n- Mise en place d'un espace de ressources professionnelles et d'un portfolio public pour les recruteurs, avec génération de CV PDF côté serveur via Dompdf."}};
+function isFullBackup(data){
+ return !!data && !Array.isArray(data) && typeof data.profile==='object' &&
+  Array.isArray(data.items) && Array.isArray(data.cvs);
+}
+function projectRows(data){
+ if(Array.isArray(data))return data;
+ if(data && Array.isArray(data.items))return data.items;
+ throw Error('Expected a JSON array of projects or an object containing "items".');
+}
 function mergeProjects(payload){
- const incoming=Array.isArray(payload)?payload:(payload&&Array.isArray(payload.items)?payload.items:null);
- if(!incoming)throw Error('Expected a project array or an object containing items');
- const projects=incoming.filter(i=>i&&i.type==='project'&&typeof i.id==='string'&&i.id.trim());
- if(!projects.length)throw Error('No project entries found');
- const ids=new Set(projects.map(i=>i.id));
- const normalized=projects.map(i=>({
-  id:i.id,type:'project',date:String(i.date||''),link:String(i.link||''),
-  title:normBi(i.title),sub:normBi(i.sub),text:normBi(i.text)
- }));
- // Preserve existing CV selections, experience, skills, and manually added items.
- S.items=S.items.filter(i=>!ids.has(i.id)).concat(normalized);
+ const incoming=projectRows(payload);
+ const projects=incoming.filter(i=>i && i.type==='project' && typeof i.id==='string' && i.id.trim());
+ if(!projects.length)throw Error('No projects found. Choose a project JSON file.');
+ const unique=new Map(projects.map(i=>[i.id,i]));
+ let added=0,updated=0;
+ for(const [id,item] of unique){
+  const previous=S.items.find(x=>x.id===id);
+  const known=PROJECT_TRANSLATIONS[id]||{};
+  const field=(key)=>{
+   const incoming=normBi(item[key]), old=normBi(previous&&previous[key]);
+   const importedFrench=typeof item[key]==='object' && item[key]!==null && typeof item[key].fr==='string' && item[key].fr.trim();
+   return {
+    en:incoming.en||old.en,
+    fr:importedFrench?incoming.fr:(old.fr||known[key]||incoming.fr||'')
+   };
+  };
+  const merged={id,type:'project',date:String(item.date||previous?.date||''),
+   link:String(item.link||previous?.link||''),
+   title:field('title'),sub:field('sub'),text:field('text')};
+  if(previous){Object.assign(previous,merged);updated++}
+  else{S.items.push(merged);added++}
+ }
  save();
  if(S.tab==='info')list();else viewCV();
- return normalized.length;
+ return {added,updated};
 }
-$('#impProjects').onclick=()=>$('#projectFile').click();
-$('#projectFile').onchange=e=>{
- const file=e.target.files[0];if(!file)return;
- const reader=new FileReader();
- reader.onload=()=>{
-  try{const count=mergeProjects(JSON.parse(reader.result));alert(count+' projects imported or updated. Select them in Create CV.');}
-  catch(err){alert('Could not import projects: '+err.message)}
-  e.target.value='';
+function importJSON(data,onlyProjects){
+ if(!onlyProjects && isFullBackup(data)){
+  if(!confirm('Restore this full backup? This replaces your currently saved CVs and profile. Export a backup first if you want to keep them.'))return 'Import cancelled.';
+  S=data;normalizeState();save();tab(S.tab||'info');
+  return 'Full CV backup restored successfully.';
+ }
+ const {added,updated}=mergeProjects(data);
+ return added+' projects added and '+updated+' projects updated. Your existing CVs and profile were preserved.';
+}
+function attachImport(buttonId,fileId,onlyProjects){
+ $(buttonId).onclick=()=>$(fileId).click();
+ $(fileId).onchange=e=>{
+  const file=e.target.files?.[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+   try{alert(importJSON(JSON.parse(reader.result),onlyProjects))}
+   catch(err){alert('Import failed: '+(err?.message||'Invalid JSON file'))}
+   e.target.value='';
+  };
+  reader.onerror=()=>{alert('Could not read selected file.');e.target.value=''};
+  reader.readAsText(file);
  };
- reader.readAsText(file);
-};
-$('#imp').onclick=()=>$('#impf').click();
-$('#impf').onchange=e=>{
- const f=e.target.files[0];if(!f)return;
- const r=new FileReader();
- r.onload=()=>{
-  try{
-   const d=JSON.parse(r.result);
-   if(!d.profile||!d.items||!d.cvs)throw 0;
-   S=d;
-   normalizeState();
-   save();
-   tab(S.tab||'info');
-  }catch(x){
-   alert('Invalid backup file');
-  }
- };
- r.readAsText(f);
-};
+}
+attachImport('#impProjects','#projectFile',true);
+attachImport('#imp','#impf',false);
 load();tab(S.tab||'info');
 </script>
 </body>
