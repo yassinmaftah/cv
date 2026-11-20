@@ -717,6 +717,20 @@ function mergeProjects(payload){
   if(previous){Object.assign(previous,merged);updated++}
   else{S.items.push(merged);added++}
  }
+ // Replace the original starter Allo Maalem record with the canonical import ID,
+ // without silently deleting a user's unrelated custom project.
+ if(unique.has('proj-allomaalem')){
+  const legacy=S.items.find(i=>i.id==='a1' && i.type==='project' &&
+   /Allo Maalem/i.test(tVal(i.title,'en')));
+  if(legacy){
+   S.items=S.items.filter(i=>i!==legacy);
+   for(const c of S.cvs){
+    const hadLegacy=c.ids.includes('a1');
+    c.ids=c.ids.filter(id=>id!=='a1');
+    if(hadLegacy && !c.ids.includes('proj-allomaalem'))c.ids.push('proj-allomaalem');
+   }
+  }
+ }
  save();
  if(S.tab==='info')list();else viewCV();
  return {added,updated};
