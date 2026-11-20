@@ -1,0 +1,545 @@
+{
+  "profile": {
+    "name": "Yassine Maftah",
+    "phone": "+212 610511207",
+    "email": "yassinmaftah06@gmail.com",
+    "city": "Agadir, Morocco",
+    "github": "https://github.com/yassinmaftah",
+    "linkedin": "https://www.linkedin.com/in/yassine-maftah-b5793933b/",
+    "headline": {
+      "en": "Full-Stack Developer & AI/ML Engineer",
+      "fr": "Développeur Full Stack & Ingénieur IA/ML"
+    },
+    "langs": {
+      "en": "Arabic: Native\nFrench: Intermediate (B2)\nEnglish: Intermediate (B2)",
+      "fr": "Arabe : Langue maternelle\nFrançais : Niveau intermédiaire (B2)\nAnglais : Niveau intermédiaire (B2)"
+    },
+    "photo": "data:image/jpeg;base64,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"
+  },
+  "items": [
+    {
+      "id": "tech-frontend",
+      "type": "technologies",
+      "title": {
+        "en": "Front-End",
+        "fr": "Front-End"
+      },
+      "link": "",
+      "sub": {
+        "en": "",
+        "fr": ""
+      },
+      "date": "",
+      "text": {
+        "en": "HTML / CSS - JavaScript - React - Vue.js - Bootstrap - Tailwind CSS",
+        "fr": "HTML / CSS - JavaScript - React - Vue.js - Bootstrap - Tailwind CSS"
+      }
+    },
+    {
+      "id": "tech-backend",
+      "type": "technologies",
+      "title": {
+        "en": "Back-End",
+        "fr": "Back-End"
+      },
+      "link": "",
+      "sub": {
+        "en": "",
+        "fr": ""
+      },
+      "date": "",
+      "text": {
+        "en": "PHP / Laravel - REST API - Laravel Sanctum - Filament",
+        "fr": "PHP / Laravel - API REST - Laravel Sanctum - Filament"
+      }
+    },
+    {
+      "id": "tech-databases",
+      "type": "technologies",
+      "title": {
+        "en": "Databases",
+        "fr": "Bases de données"
+      },
+      "link": "",
+      "sub": {
+        "en": "",
+        "fr": ""
+      },
+      "date": "",
+      "text": {
+        "en": "MySQL - PostgreSQL - MongoDB",
+        "fr": "MySQL - PostgreSQL - MongoDB"
+      }
+    },
+    {
+      "id": "tech-modeling",
+      "type": "technologies",
+      "title": {
+        "en": "Modeling",
+        "fr": "Modélisation"
+      },
+      "link": "",
+      "sub": {
+        "en": "",
+        "fr": ""
+      },
+      "date": "",
+      "text": {
+        "en": "UML - Merise",
+        "fr": "UML - Merise"
+      }
+    },
+    {
+      "id": "tech-uiux",
+      "type": "technologies",
+      "title": {
+        "en": "UI/UX",
+        "fr": "UI/UX"
+      },
+      "link": "",
+      "sub": {
+        "en": "",
+        "fr": ""
+      },
+      "date": "",
+      "text": {
+        "en": "Wireframing & Prototyping (Figma)",
+        "fr": "Maquettage (Figma)"
+      }
+    },
+    {
+      "id": "tech-cms",
+      "type": "technologies",
+      "title": {
+        "en": "CMS",
+        "fr": "CMS"
+      },
+      "link": "",
+      "sub": {
+        "en": "",
+        "fr": ""
+      },
+      "date": "",
+      "text": {
+        "en": "WordPress",
+        "fr": "WordPress"
+      }
+    },
+    {
+      "id": "tech-tools",
+      "type": "technologies",
+      "title": {
+        "en": "Tools & Methods",
+        "fr": "Outils & Méthodes"
+      },
+      "link": "",
+      "sub": {
+        "en": "",
+        "fr": ""
+      },
+      "date": "",
+      "text": {
+        "en": "Git / GitHub - Docker - Jira / Trello - Agile (Scrum)",
+        "fr": "Git / GitHub - Docker - Jira / Trello - Agile (Scrum)"
+      }
+    },
+    {
+      "id": "tech-python-ds",
+      "type": "technologies",
+      "title": {
+        "en": "Python & Data Science",
+        "fr": "Python & Data Science"
+      },
+      "link": "",
+      "sub": {
+        "en": "",
+        "fr": ""
+      },
+      "date": "",
+      "text": {
+        "en": "Python - Pandas - NumPy - Matplotlib - Seaborn",
+        "fr": "Python - Pandas - NumPy - Matplotlib - Seaborn"
+      }
+    },
+    {
+      "id": "tech-ml",
+      "type": "technologies",
+      "title": {
+        "en": "Machine Learning",
+        "fr": "Machine Learning"
+      },
+      "link": "",
+      "sub": {
+        "en": "",
+        "fr": ""
+      },
+      "date": "",
+      "text": {
+        "en": "Scikit-learn - XGBoost - Regression - Classification - Clustering (K-Means, DBSCAN) - SMOTE - GridSearchCV",
+        "fr": "Scikit-learn - XGBoost - Régression - Classification - Clustering (K-Means, DBSCAN) - SMOTE - GridSearchCV"
+      }
+    },
+    {
+      "id": "tech-data-eng",
+      "type": "technologies",
+      "title": {
+        "en": "Data Engineering",
+        "fr": "Data Engineering"
+      },
+      "link": "",
+      "sub": {
+        "en": "",
+        "fr": ""
+      },
+      "date": "",
+      "text": {
+        "en": "ETL Pipelines (Bronze / Silver / Gold) - Apache Airflow - SQLAlchemy - Docker Compose",
+        "fr": "Pipeline ETL (Bronze / Silver / Gold) - Apache Airflow - SQLAlchemy - Docker Compose"
+      }
+    },
+    {
+      "id": "tech-mlops",
+      "type": "technologies",
+      "title": {
+        "en": "MLOps & Deployment",
+        "fr": "MLOps & Déploiement"
+      },
+      "link": "",
+      "sub": {
+        "en": "",
+        "fr": ""
+      },
+      "date": "",
+      "text": {
+        "en": "MLflow - Streamlit - Docker - Joblib",
+        "fr": "MLflow - Streamlit - Docker - Joblib"
+      }
+    },
+    {
+      "id": "exp-inticsolutions",
+      "type": "experience",
+      "title": {
+        "en": "Web Development Intern, InticSolutions",
+        "fr": "Stagiaire Développeur Web, InticSolutions"
+      },
+      "date": "06/2026 - 09/2026",
+      "link": "",
+      "sub": {
+        "en": "Agadir, Morocco",
+        "fr": "Agadir, Maroc"
+      },
+      "text": {
+        "en": "- Backend development of WavePMS, a surf camp management platform (Laravel, PostgreSQL)\n- Designed and implemented database schemas, API routes, and operational workflows for multi-tenant management",
+        "fr": "- Développement backend de WavePMS, plateforme de gestion de surf camps (Laravel, PostgreSQL)\n- Conception et implémentation des schémas de base de données, routes API et flux opérationnels multi-tenants"
+      }
+    },
+    {
+      "id": "proj-allomaalem",
+      "type": "project",
+      "title": {
+        "en": "Allo Maalem – Job Board Platform",
+        "fr": "Allo Maalem – Plateforme de mise en relation d'artisans"
+      },
+      "date": "2026",
+      "link": "https://github.com/yassinmaftah/AlloMaalem",
+      "sub": {
+        "en": "Laravel 12, MySQL, Tailwind CSS, JavaScript, Stripe API, Docker",
+        "fr": "Laravel 12, MySQL, Tailwind CSS, JavaScript, API Stripe, Docker"
+      },
+      "text": {
+        "en": "- Developed a full-stack platform connecting clients with certified tradesmen (Maalems) with dynamic job postings\n- Implemented concurrency-safe proposal hiring workflow using database transactions and integrated Stripe payments\n- Designed a responsive mobile-first user interface with Tailwind CSS and role-based operational dashboards",
+        "fr": "- Développement d'une plateforme full-stack mettant en relation des clients avec des artisans qualifiés (Maalems)\n- Implémentation d'un flux d'embauche sécurisé contre les accès concurrents et intégration des paiements Stripe\n- Conception d'une interface utilisateur responsive mobile-first avec Tailwind CSS et tableaux de bord par rôles"
+      }
+    },
+    {
+      "id": "proj-taxiya",
+      "type": "project",
+      "title": {
+        "en": "TaxiYa – Grand Taxi Ride-Sharing Platform",
+        "fr": "TaxiYa – Plateforme de covoiturage Grand Taxi"
+      },
+      "date": "2026",
+      "link": "https://github.com/SaiKYouBoi/Taxiya.git",
+      "sub": {
+        "en": "Laravel, MySQL, JavaScript, Git",
+        "fr": "Laravel, MySQL, JavaScript, Git"
+      },
+      "text": {
+        "en": "- Developed an intercity ride-sharing system with real-time seat availability tracking and reservation handling\n- Designed a robust relational MySQL database schema and implemented transactional booking workflows\n- Managed a complex Git workflow across 11 branches for structured, modular feature development",
+        "fr": "- Développement d'un système de covoiturage interurbain avec gestion de la disponibilité des places en temps réel\n- Conception d'un schéma relationnel robuste MySQL et implémentation du traitement des réservations\n- Gestion d'un flux de travail Git complexe (11 branches) pour un développement organisé des fonctionnalités"
+      }
+    },
+    {
+      "id": "proj-bookbus",
+      "type": "project",
+      "title": {
+        "en": "BookBus – Intercity Bus Booking & Fleet Management",
+        "fr": "BookBus – Réservation d'autocars interurbains & Gestion de flotte"
+      },
+      "date": "2026",
+      "link": "https://github.com/yassinmaftah/bookbus-laravel",
+      "sub": {
+        "en": "Laravel 12, PHP 8.2, MariaDB, Tailwind CSS, Alpine.js, Dompdf, Docker",
+        "fr": "Laravel 12, PHP 8.2, MariaDB, Tailwind CSS, Alpine.js, Dompdf, Docker"
+      },
+      "text": {
+        "en": "- Developed multi-hop transit search across 20 Moroccan cities with dynamic segment fare calculation\n- Enforced 50-passenger capacity limits and race-condition-safe seat allocation to prevent overbooking\n- Implemented automated server-side PDF e-ticket generation and self-service booking cancellation workflow",
+        "fr": "- Développé un moteur de recherche de trajets interurbains sur 20 villes marocaines avec calcul tarifaire dynamique\n- Appliqué la gestion de capacité à 50 passagers et l'allocation sécurisée des sièges évitant le surbooking\n- Implémenté la génération automatique d'e-billets PDF côté serveur et le flux d'annulation en libre-service"
+      }
+    },
+    {
+      "id": "proj-deliveryeta",
+      "type": "project",
+      "title": {
+        "en": "DeliveryETA – Real-Time Food Delivery Duration Prediction",
+        "fr": "DeliveryETA – Prédiction du temps de livraison de repas en temps réel"
+      },
+      "date": "2026",
+      "link": "https://github.com/yassinmaftah/DeliveryETA",
+      "sub": {
+        "en": "Python 3.12, Scikit-Learn, Streamlit, Pandas, NumPy, Docker",
+        "fr": "Python 3.12, Scikit-Learn, Streamlit, Pandas, NumPy, Docker"
+      },
+      "text": {
+        "en": "- Engineered geospatial distance features via Haversine formula and kitchen prep duration with rollover correction\n- Trained and tuned Random Forest regressor achieving R² of 0.764 and MAE of 3.53 minutes using 5-fold CV\n- Deployed interactive Streamlit app with unified ColumnTransformer preprocessing to prevent data leakage",
+        "fr": "- Ingénierie de variables géospatiales (formule Haversine) et durée de préparation avec correction de minuit\n- Entraîné un régresseur Random Forest optimisé atteignant un R² de 0,764 et une MAE de 3,53 min par validation croisée\n- Déployé une application Streamlit interactive avec pipeline ColumnTransformer prévenant les fuites de données"
+      }
+    },
+    {
+      "id": "proj-diabetes-mlops",
+      "type": "project",
+      "title": {
+        "en": "Diabetes Risk MLOps Platform",
+        "fr": "Plateforme MLOps d'évaluation du risque diabétique"
+      },
+      "date": "2026",
+      "link": "https://github.com/yassinmaftah/diabetes-risk-mlops",
+      "sub": {
+        "en": "Python, Scikit-Learn, FastAPI, Streamlit, MLflow, Apache Airflow, Docker",
+        "fr": "Python, Scikit-Learn, FastAPI, Streamlit, MLflow, Apache Airflow, Docker"
+      },
+      "text": {
+        "en": "- Built machine learning pipeline using KNN imputation, K-Means clustering, and Logistic Regression\n- Orchestrated automated model retraining with Apache Airflow and tracked experiments using MLflow Registry\n- Containerized FastAPI inference microservice with Pydantic validation and interactive Streamlit UI",
+        "fr": "- Construit un pipeline ML combinant imputation KNN, clustering K-Means et régression logistique\n- Orchestré le réentraînement automatique avec Apache Airflow et suivi des expériences via le registre MLflow\n- Conteneurisé un microservice d'inférence FastAPI validé par Pydantic et une interface clinique Streamlit"
+      }
+    },
+    {
+      "id": "proj-brainscan",
+      "type": "project",
+      "title": {
+        "en": "BrainScan AI – Deep Learning Brain MRI Multi-Class Tumor Classifier",
+        "fr": "BrainScan AI – Classifieur de tumeurs cérébrales IRM par Deep Learning"
+      },
+      "date": "2026",
+      "link": "https://github.com/yassinmaftah/brainscan-ai",
+      "sub": {
+        "en": "Python 3.11, TensorFlow 2.17, Streamlit, Docker, OpenCV, Scikit-Learn",
+        "fr": "Python 3.11, TensorFlow 2.17, Streamlit, Docker, OpenCV, Scikit-Learn"
+      },
+      "text": {
+        "en": "- Developed a custom 3-block CNN classifying 4 brain MRI categories with 96.51% test accuracy on 7,023 scans\n- Implemented clinical safety triage enforcing a 70% confidence threshold to flag ambiguous cases for review\n- Containerized Streamlit interface and Jupyter research lab with multi-stage Docker Compose architecture",
+        "fr": "- Développé un CNN à 3 blocs classifiant 4 types d'IRM cérébrales avec 96,51% de précision sur 7 023 images\n- Implémenté un seuil de confiance clinique de 70% pour alerter sur les cas ambigus nécessitant une revue médicale\n- Conteneurisé l'interface Streamlit et l'environnement Jupyter via une architecture Docker Compose multi-services"
+      }
+    },
+    {
+      "id": "proj-neuroscan",
+      "type": "project",
+      "title": {
+        "en": "NeuroScan-AI – Dual Brain Tumor Analysis (Classification & Detection)",
+        "fr": "NeuroScan-AI – Analyse de tumeurs cérébrales (Classification & Détection)"
+      },
+      "date": "2026",
+      "link": "https://github.com/yassinmaftah/NeuroScan-AI",
+      "sub": {
+        "en": "Python, TensorFlow, InceptionV3, YOLOv8s, FastAPI, Streamlit, MLflow, Airflow, Docker",
+        "fr": "Python, TensorFlow, InceptionV3, YOLOv8s, FastAPI, Streamlit, MLflow, Airflow, Docker"
+      },
+      "text": {
+        "en": "- Fine-tuned InceptionV3 on MRI scans reaching 96.3% test accuracy and trained YOLOv8s for tumor localization\n- Automated end-to-end data preparation, training, and evaluation pipelines via 8-task Apache Airflow DAG\n- Exposed dual REST APIs with FastAPI, tracked models in MLflow, and deployed user interface in Streamlit",
+        "fr": "- Fine-tuning d'InceptionV3 atteignant 96,3% de précision et entraînement de YOLOv8s pour la localisation de tumeurs\n- Automatisé la préparation, l'entraînement et l'évaluation via un pipeline Apache Airflow à 8 tâches\n- Exposé deux APIs REST avec FastAPI, suivi des modèles dans MLflow et interface utilisateur sous Streamlit"
+      }
+    },
+    {
+      "id": "proj-meteorisk",
+      "type": "project",
+      "title": {
+        "en": "s-MeteoRisk – Meteorological Risk Intelligence Platform",
+        "fr": "s-MeteoRisk – Plateforme d'intelligence des risques météorologiques"
+      },
+      "date": "2026",
+      "link": "https://github.com/yassinmaftah/s-MeteoRisk",
+      "sub": {
+        "en": "Python 3.11, Apache Airflow, PostgreSQL 16, SQLAlchemy, Streamlit, Docker",
+        "fr": "Python 3.11, Apache Airflow, PostgreSQL 16, SQLAlchemy, Streamlit, Docker"
+      },
+      "text": {
+        "en": "- Extracted Open-Meteo REST API forecasts and modeled data across Bronze, Silver, and Gold PostgreSQL schema\n- Designed composite risk index evaluating wind gust thresholds, rain probability, and temperature extremes\n- Orchestrated daily cron ETL workflows using Apache Airflow and visualized municipality risks in Streamlit",
+        "fr": "- Extrait les prévisions de l'API Open-Meteo et structuré les données en architecture Medallion sous PostgreSQL\n- Conçu un indice composite évaluant les rafales de vent, la probabilité de pluie et les extrêmes thermiques\n- Orchestré les flux ETL quotidiens avec Apache Airflow et visualisé les risques municipaux sous Streamlit"
+      }
+    },
+    {
+      "id": "proj-easycoloc",
+      "type": "project",
+      "title": {
+        "en": "EasyColoc – Roommate Expense Sharing & Reputation Platform",
+        "fr": "EasyColoc – Partage de dépenses en colocation & Système de réputation"
+      },
+      "date": "2026",
+      "link": "https://github.com/yassinmaftah/EasyColoc",
+      "sub": {
+        "en": "Laravel 12, PHP 8.2, Blade, Tailwind CSS, MariaDB, Docker",
+        "fr": "Laravel 12, PHP 8.2, Blade, Tailwind CSS, MariaDB, Docker"
+      },
+      "text": {
+        "en": "- Implemented automated equal bill splitting and real-time bilateral debt tracking with 1-click settlement\n- Created a gamified roommate reputation score with transactional debt reallocation upon member departure\n- Built multi-tier RBAC system (Admin, Owner, Member) with secure cryptographic token email invitations",
+        "fr": "- Implémenté la répartition équitable automatique des factures et le suivi bilatéral des dettes en temps réel\n- Conçu un score de réputation gamifié avec réaffectation transactionnelle des dettes en cas de départ\n- Développé un système RBAC multi-niveaux (Admin, Propriétaire, Colocataire) avec invitations par token sécurisé"
+      }
+    },
+    {
+      "id": "proj-virtualworkspace",
+      "type": "project",
+      "title": {
+        "en": "Virtual Workspace Manager",
+        "fr": "Virtual Workspace Manager – Gestionnaire d'affectations"
+      },
+      "date": "2025",
+      "link": "https://github.com/yassinmaftah/VirtualWorkspace",
+      "sub": {
+        "en": "JavaScript Vanilla, HTML5, CSS3, LocalStorage",
+        "fr": "JavaScript Vanilla, HTML5, CSS3, LocalStorage"
+      },
+      "text": {
+        "en": "- Built client-side CRUD worker management with real-time input validation and LocalStorage persistence\n- Implemented room capacity constraints and role-based access filters to dynamically optimize room assignments\n- Designed an interactive visual floor plan displaying real-time occupancy and remaining room capacity",
+        "fr": "- Développé une gestion CRUD d'employés côté client avec validation en temps réel et persistance LocalStorage\n- Implémenté des règles d'accès basées sur les rôles et contraintes de capacité pour optimiser les affectations\n- Conçu une carte visuelle interactive affichant en temps réel l'occupation et les places restantes par salle"
+      }
+    },
+    {
+      "id": "proj-wavepms",
+      "type": "project",
+      "title": {
+        "en": "WavePMS – Multi-Tenant Property Management System for Surf Camps",
+        "fr": "WavePMS – Système SaaS multi-tenant de gestion pour surf camps"
+      },
+      "date": "2026",
+      "link": "https://github.com/yassinmaftah/wavepms-saas",
+      "sub": {
+        "en": "Laravel 12, PostgreSQL, stancl/tenancy, Filament 5, Livewire 3, Tailwind CSS, Docker",
+        "fr": "Laravel 12, PostgreSQL, stancl/tenancy, Filament 5, Livewire 3, Tailwind CSS, Docker"
+      },
+      "text": {
+        "en": "- Architected multi-tenancy with PostgreSQL schema isolation via stancl/tenancy for client data separation\n- Developed 8 role-based dashboards with Filament and Livewire for front desk, instructors, and kitchen\n- Integrated magic-link guest portal with digital waiver signing and flight delay tracking via external APIs",
+        "fr": "- Architecturé une solution SaaS multi-tenant avec isolation par schéma PostgreSQL via stancl/tenancy\n- Développé 8 tableaux de bord opérationnels avec Filament et Livewire (accueil, moniteurs, cuisine, navettes)\n- Intégré un portail client par liens magiques avec signature numérique de décharge et suivi des vols via API"
+      }
+    },
+    {
+      "id": "proj-quranplatform",
+      "type": "project",
+      "title": {
+        "en": "QuranPlatform – Quran Memorization & Study Platform",
+        "fr": "QuranPlatform – Plateforme d'apprentissage et de mémorisation du Coran"
+      },
+      "date": "2026",
+      "link": "https://github.com/yassinmaftah/backend-Q",
+      "sub": {
+        "en": "Laravel 12, React 19, Vite 8, Tailwind CSS v4, SQLite/MySQL, Sanctum, Docker",
+        "fr": "Laravel 12, React 19, Vite 8, Tailwind CSS v4, SQLite/MySQL, Sanctum, Docker"
+      },
+      "text": {
+        "en": "- Built decoupled Laravel 12 REST API with Sanctum auth and React 19 SPA styled with Tailwind CSS v4\n- Created interactive Hifz memorization tracker with 240-Thumon progress mandala and streak heatmaps\n- Implemented video tafsir library with YouTube oEmbed integration and back-office administrative moderation",
+        "fr": "- Développé une API REST découplée sous Laravel 12 avec Sanctum et une SPA sous React 19 et Tailwind CSS v4\n- Créé un suivi interactif de mémorisation Hifz avec mandala à 240 Thumuns et visualisations d'assiduité\n- Intégré une bibliothèque de vidéos de tafsir avec extraction YouTube oEmbed et modération administrative"
+      }
+    },
+    {
+      "id": "proj-youcode",
+      "type": "project",
+      "title": {
+        "en": "YouCode – Developer Career & Collaborative Hub",
+        "fr": "YouCode – Hub de carrière et de collaboration pour développeurs"
+      },
+      "date": "2026",
+      "link": "https://github.com/yassinmaftah/yc-backend",
+      "sub": {
+        "en": "Laravel 12, React 19, Vite 8, Tailwind CSS v4, Dompdf, Docker",
+        "fr": "Laravel 12, React 19, Vite 8, Tailwind CSS v4, Dompdf, Docker"
+      },
+      "text": {
+        "en": "- Developed drag-and-drop ATS recruitment Kanban pipeline with custom hiring stages and deadline tracking\n- Implemented interactive quiz and poll feed with real-time voting animations and instant explanations\n- Built career asset vault and public recruiter portfolio with server-side PDF resume generation via Dompdf",
+        "fr": "- Développé un pipeline Kanban de recrutement ATS en glisser-déposer avec étapes personnalisées\n- Implémenté un fil interactif de quiz et sondages avec animations de vote et explications instantanées\n- Construit un coffre d'atouts professionnels et un portfolio public avec génération de CV en PDF via Dompdf"
+      }
+    }
+  ],
+  "cvs": [
+    {
+      "id": "c1",
+      "name": "Master CV (EN)",
+      "lang": "en",
+      "headline": "Full-Stack Developer & AI/ML Engineer",
+      "ids": [
+        "tech-frontend",
+        "tech-backend",
+        "tech-databases",
+        "tech-modeling",
+        "tech-uiux",
+        "tech-cms",
+        "tech-tools",
+        "tech-python-ds",
+        "tech-ml",
+        "tech-data-eng",
+        "tech-mlops",
+        "exp-inticsolutions",
+        "proj-allomaalem",
+        "proj-taxiya",
+        "proj-bookbus",
+        "proj-deliveryeta",
+        "proj-diabetes-mlops",
+        "proj-brainscan",
+        "proj-neuroscan",
+        "proj-meteorisk",
+        "proj-easycoloc",
+        "proj-virtualworkspace",
+        "proj-wavepms",
+        "proj-quranplatform",
+        "proj-youcode"
+      ],
+      "accent": "#2f4a7d",
+      "photo": true
+    },
+    {
+      "id": "c2",
+      "name": "Master CV (FR)",
+      "lang": "fr",
+      "headline": "Développeur Full Stack & Ingénieur IA/ML",
+      "ids": [
+        "tech-frontend",
+        "tech-backend",
+        "tech-databases",
+        "tech-modeling",
+        "tech-uiux",
+        "tech-cms",
+        "tech-tools",
+        "tech-python-ds",
+        "tech-ml",
+        "tech-data-eng",
+        "tech-mlops",
+        "exp-inticsolutions",
+        "proj-allomaalem",
+        "proj-taxiya",
+        "proj-bookbus",
+        "proj-deliveryeta",
+        "proj-diabetes-mlops",
+        "proj-brainscan",
+        "proj-neuroscan",
+        "proj-meteorisk",
+        "proj-easycoloc",
+        "proj-virtualworkspace",
+        "proj-wavepms",
+        "proj-quranplatform",
+        "proj-youcode"
+      ],
+      "accent": "#2f4a7d",
+      "photo": true
+    }
+  ],
+  "cur": "c1",
+  "tab": "info"
+}
