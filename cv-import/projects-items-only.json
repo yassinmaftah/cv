@@ -2,109 +2,217 @@
   {
     "id": "proj-allomaalem",
     "type": "project",
-    "title": "Allo Maalem",
+    "title": {
+      "en": "Allo Maalem",
+      "fr": "Allo Maalem"
+    },
     "date": "2026",
     "link": "https://github.com/yassinmaftah/AlloMaalem",
-    "sub": "Laravel 12, PHP 8.2, MySQL 8.0, Tailwind CSS, Stripe API, Docker",
-    "text": "- Built role-based portals for clients and artisans with custom middleware and monthly quota enforcement.\n- Implemented concurrency-safe proposal hiring workflow using database transactions to prevent price tampering.\n- Integrated Stripe API for tiered subscriptions and automated artisan invoicing."
+    "sub": {
+      "en": "Laravel 12, PHP 8.2, MySQL 8.0, Tailwind CSS, Stripe API, Docker",
+      "fr": "Laravel 12, PHP 8.2, MySQL 8.0, Tailwind CSS, API Stripe, Docker"
+    },
+    "text": {
+      "en": "- Built role-based portals for clients and artisans with custom middleware and monthly quota enforcement.\n- Implemented concurrency-safe proposal hiring workflow using database transactions to prevent price tampering.\n- Integrated Stripe API for tiered subscriptions and automated artisan invoicing.",
+      "fr": "- Développement de portails par rôle pour les clients et les artisans avec middleware personnalisé et gestion des quotas mensuels.\n- Mise en place d'un processus d'attribution des propositions sécurisé contre les accès concurrents grâce aux transactions en base de données.\n- Intégration de l'API Stripe pour les abonnements à plusieurs niveaux et la facturation automatique des artisans."
+    }
   },
   {
     "id": "proj-brainscan",
     "type": "project",
-    "title": "BrainScan AI",
+    "title": {
+      "en": "BrainScan AI",
+      "fr": "BrainScan AI"
+    },
     "date": "2026",
     "link": "https://github.com/yassinmaftah/brainscan-ai",
-    "sub": "Python 3.11, TensorFlow 2.17, Streamlit, Docker, OpenCV, Scikit-Learn",
-    "text": "- Developed a custom 3-block CNN classifying 4 brain MRI categories with 96.51% test accuracy on 7,023 scans.\n- Implemented clinical safety triage enforcing a 70% confidence threshold to flag ambiguous cases for review.\n- Containerized Streamlit interface and Jupyter research lab with multi-stage Docker Compose architecture."
+    "sub": {
+      "en": "Python 3.11, TensorFlow 2.17, Streamlit, Docker, OpenCV, Scikit-Learn",
+      "fr": "Python 3.11, TensorFlow 2.17, Streamlit, Docker, OpenCV, Scikit-learn"
+    },
+    "text": {
+      "en": "- Developed a custom 3-block CNN classifying 4 brain MRI categories with 96.51% test accuracy on 7,023 scans.\n- Implemented clinical safety triage enforcing a 70% confidence threshold to flag ambiguous cases for review.\n- Containerized Streamlit interface and Jupyter research lab with multi-stage Docker Compose architecture.",
+      "fr": "- Développement d'un CNN personnalisé à trois blocs pour classer quatre catégories d'IRM cérébrales, avec une précision de 96,51 % sur un jeu de test de 7 023 images.\n- Mise en place d'un mécanisme de triage utilisant un seuil de confiance de 70 % pour signaler les cas ambigus nécessitant une vérification.\n- Conteneurisation de l'interface Streamlit et du laboratoire Jupyter avec une architecture Docker Compose multi-services."
+    }
   },
   {
     "id": "proj-deliveryeta",
     "type": "project",
-    "title": "DeliveryETA",
+    "title": {
+      "en": "DeliveryETA",
+      "fr": "DeliveryETA"
+    },
     "date": "2026",
     "link": "https://github.com/yassinmaftah/DeliveryETA",
-    "sub": "Python 3.12, Scikit-Learn, Streamlit, Pandas, NumPy, Docker",
-    "text": "- Engineered geospatial distance features via Haversine formula and kitchen prep duration with rollover correction.\n- Trained and tuned Random Forest regressor achieving R² of 0.764 and MAE of 3.53 minutes using 5-fold CV.\n- Deployed interactive Streamlit app with unified ColumnTransformer preprocessing to prevent data leakage."
+    "sub": {
+      "en": "Python 3.12, Scikit-Learn, Streamlit, Pandas, NumPy, Docker",
+      "fr": "Python 3.12, Scikit-learn, Streamlit, Pandas, NumPy, Docker"
+    },
+    "text": {
+      "en": "- Engineered geospatial distance features via Haversine formula and kitchen prep duration with rollover correction.\n- Trained and tuned Random Forest regressor achieving R² of 0.764 and MAE of 3.53 minutes using 5-fold CV.\n- Deployed interactive Streamlit app with unified ColumnTransformer preprocessing to prevent data leakage.",
+      "fr": "- Création de variables géospatiales à partir de la formule de Haversine et calcul du temps de préparation avec gestion du passage à minuit.\n- Entraînement et optimisation d'un modèle Random Forest atteignant un R² de 0,764 et une erreur absolue moyenne de 3,53 minutes, avec validation croisée à cinq plis.\n- Déploiement d'une application Streamlit utilisant un ColumnTransformer commun pour éviter les fuites de données."
+    }
   },
   {
     "id": "proj-diabetes-mlops",
     "type": "project",
-    "title": "Diabetes Risk MLOps",
+    "title": {
+      "en": "Diabetes Risk MLOps",
+      "fr": "Diabetes Risk MLOps"
+    },
     "date": "2026",
     "link": "https://github.com/yassinmaftah/diabetes-risk-mlops",
-    "sub": "Python, Scikit-Learn, FastAPI, Streamlit, MLflow, Apache Airflow, Docker",
-    "text": "- Built machine learning pipeline using KNN imputation, K-Means clustering, and Logistic Regression.\n- Orchestrated automated model retraining with Apache Airflow and tracked experiments using MLflow Registry.\n- Containerized FastAPI inference microservice with Pydantic validation and interactive Streamlit UI."
+    "sub": {
+      "en": "Python, Scikit-Learn, FastAPI, Streamlit, MLflow, Apache Airflow, Docker",
+      "fr": "Python, Scikit-learn, FastAPI, Streamlit, MLflow, Apache Airflow, Docker"
+    },
+    "text": {
+      "en": "- Built machine learning pipeline using KNN imputation, K-Means clustering, and Logistic Regression.\n- Orchestrated automated model retraining with Apache Airflow and tracked experiments using MLflow Registry.\n- Containerized FastAPI inference microservice with Pydantic validation and interactive Streamlit UI.",
+      "fr": "- Construction d'un pipeline de machine learning combinant imputation KNN, clustering K-Means et régression logistique.\n- Orchestration du réentraînement automatique avec Apache Airflow et suivi des expériences via le registre de modèles MLflow.\n- Conteneurisation d'un microservice d'inférence FastAPI avec validation Pydantic et interface interactive Streamlit."
+    }
   },
   {
     "id": "proj-easycoloc",
     "type": "project",
-    "title": "EasyColoc",
+    "title": {
+      "en": "EasyColoc",
+      "fr": "EasyColoc"
+    },
     "date": "2026",
     "link": "https://github.com/yassinmaftah/EasyColoc",
-    "sub": "Laravel 12, PHP 8.2, Blade, Tailwind CSS, MariaDB, Docker",
-    "text": "- Implemented automated equal bill splitting and real-time bilateral debt tracking with 1-click settlement.\n- Created a gamified roommate reputation score with transactional debt reallocation upon member departure.\n- Built multi-tier RBAC system (Admin, Owner, Member) with secure cryptographic token email invitations."
+    "sub": {
+      "en": "Laravel 12, PHP 8.2, Blade, Tailwind CSS, MariaDB, Docker",
+      "fr": "Laravel 12, PHP 8.2, Blade, Tailwind CSS, MariaDB, Docker"
+    },
+    "text": {
+      "en": "- Implemented automated equal bill splitting and real-time bilateral debt tracking with 1-click settlement.\n- Created a gamified roommate reputation score with transactional debt reallocation upon member departure.\n- Built multi-tier RBAC system (Admin, Owner, Member) with secure cryptographic token email invitations.",
+      "fr": "- Automatisation du partage équitable des dépenses et du suivi des dettes bilatérales en temps réel, avec règlement en un clic.\n- Création d'un score de réputation entre colocataires et réattribution transactionnelle des dettes lors du départ d'un membre.\n- Mise en place d'un contrôle d'accès par rôles (administrateur, propriétaire, membre) et d'invitations par e-mail sécurisées par jeton."
+    }
   },
   {
     "id": "proj-neuroscan",
     "type": "project",
-    "title": "NeuroScan-AI",
+    "title": {
+      "en": "NeuroScan-AI",
+      "fr": "NeuroScan-AI"
+    },
     "date": "2026",
     "link": "https://github.com/yassinmaftah/NeuroScan-AI",
-    "sub": "Python, TensorFlow, InceptionV3, YOLOv8s, FastAPI, Streamlit, MLflow, Airflow, Docker",
-    "text": "- Fine-tuned InceptionV3 on MRI scans reaching 96.3% test accuracy and trained YOLOv8s for tumor localization.\n- Automated end-to-end data preparation, training, and evaluation pipelines via 8-task Apache Airflow DAG.\n- Exposed dual REST APIs with FastAPI, tracked models in MLflow, and deployed user interface in Streamlit."
+    "sub": {
+      "en": "Python, TensorFlow, InceptionV3, YOLOv8s, FastAPI, Streamlit, MLflow, Airflow, Docker",
+      "fr": "Python, TensorFlow, InceptionV3, YOLOv8s, FastAPI, Streamlit, MLflow, Airflow, Docker"
+    },
+    "text": {
+      "en": "- Fine-tuned InceptionV3 on MRI scans reaching 96.3% test accuracy and trained YOLOv8s for tumor localization.\n- Automated end-to-end data preparation, training, and evaluation pipelines via 8-task Apache Airflow DAG.\n- Exposed dual REST APIs with FastAPI, tracked models in MLflow, and deployed user interface in Streamlit.",
+      "fr": "- Ajustement d'InceptionV3 pour la classification d'IRM cérébrales avec 96,3 % de précision sur le jeu de test et entraînement de YOLOv8s pour la localisation des tumeurs.\n- Automatisation de la préparation des données, de l'entraînement et de l'évaluation avec un DAG Apache Airflow de huit tâches.\n- Exposition de deux API REST via FastAPI, suivi des modèles dans MLflow et déploiement d'une interface Streamlit."
+    }
   },
   {
     "id": "proj-meteorisk",
     "type": "project",
-    "title": "s-MeteoRisk",
+    "title": {
+      "en": "s-MeteoRisk",
+      "fr": "s-MeteoRisk"
+    },
     "date": "2026",
     "link": "https://github.com/yassinmaftah/s-MeteoRisk",
-    "sub": "Python 3.11, Apache Airflow, PostgreSQL 16, SQLAlchemy, Streamlit, Docker",
-    "text": "- Extracted Open-Meteo REST API forecasts and modeled data across Bronze, Silver, and Gold PostgreSQL schema.\n- Designed composite risk index evaluating wind gust thresholds, rain probability, and temperature extremes.\n- Orchestrated daily cron ETL workflows using Apache Airflow and visualized municipality risks in Streamlit."
+    "sub": {
+      "en": "Python 3.11, Apache Airflow, PostgreSQL 16, SQLAlchemy, Streamlit, Docker",
+      "fr": "Python 3.11, Apache Airflow, PostgreSQL 16, SQLAlchemy, Streamlit, Docker"
+    },
+    "text": {
+      "en": "- Extracted Open-Meteo REST API forecasts and modeled data across Bronze, Silver, and Gold PostgreSQL schema.\n- Designed composite risk index evaluating wind gust thresholds, rain probability, and temperature extremes.\n- Orchestrated daily cron ETL workflows using Apache Airflow and visualized municipality risks in Streamlit.",
+      "fr": "- Extraction de prévisions via l'API REST Open-Meteo et structuration des données PostgreSQL en couches Bronze, Silver et Gold.\n- Conception d'un indice de risque combinant les seuils de rafales de vent, les probabilités de pluie et les températures extrêmes.\n- Orchestration de pipelines ETL quotidiens avec Apache Airflow et visualisation des risques pour 120 villes marocaines dans Streamlit."
+    }
   },
   {
     "id": "proj-satas-bus",
     "type": "project",
-    "title": "SATAS Bus",
+    "title": {
+      "en": "SATAS Bus",
+      "fr": "SATAS Bus"
+    },
     "date": "2026",
     "link": "https://github.com/yassinmaftah/bookbus-laravel",
-    "sub": "Laravel 12, PHP 8.2, MariaDB, Tailwind CSS, Alpine.js, Dompdf, Docker",
-    "text": "- Developed multi-hop transit search across 20 Moroccan cities with dynamic segment fare calculation.\n- Enforced 50-passenger capacity limits and race-condition-safe seat allocation to prevent overbooking.\n- Implemented automated server-side PDF e-ticket generation and self-service booking cancellation workflow."
+    "sub": {
+      "en": "Laravel 12, PHP 8.2, MariaDB, Tailwind CSS, Alpine.js, Dompdf, Docker",
+      "fr": "Laravel 12, PHP 8.2, MariaDB, Tailwind CSS, Alpine.js, Dompdf, Docker"
+    },
+    "text": {
+      "en": "- Developed multi-hop transit search across 20 Moroccan cities with dynamic segment fare calculation.\n- Enforced 50-passenger capacity limits and race-condition-safe seat allocation to prevent overbooking.\n- Implemented automated server-side PDF e-ticket generation and self-service booking cancellation workflow.",
+      "fr": "- Développement d'une recherche de trajets avec correspondances entre 20 villes marocaines et calcul dynamique des tarifs par segment.\n- Application d'une limite de 50 passagers et sécurisation de l'attribution des sièges contre les réservations concurrentes.\n- Génération automatisée de billets électroniques PDF côté serveur et gestion des annulations en libre-service."
+    }
   },
   {
     "id": "proj-virtualworkspace",
     "type": "project",
-    "title": "Workspace Manager",
+    "title": {
+      "en": "Workspace Manager",
+      "fr": "Workspace Manager"
+    },
     "date": "2025",
     "link": "https://github.com/yassinmaftah/VirtualWorkspace",
-    "sub": "JavaScript Vanilla, HTML5, CSS3, LocalStorage",
-    "text": "- Built client-side CRUD worker management with real-time input validation and LocalStorage persistence.\n- Implemented room capacity constraints and role-based access filters to dynamically optimize room assignments.\n- Designed an interactive visual floor plan displaying real-time occupancy and remaining room capacity."
+    "sub": {
+      "en": "JavaScript Vanilla, HTML5, CSS3, LocalStorage",
+      "fr": "JavaScript natif, HTML5, CSS3, LocalStorage"
+    },
+    "text": {
+      "en": "- Built client-side CRUD worker management with real-time input validation and LocalStorage persistence.\n- Implemented room capacity constraints and role-based access filters to dynamically optimize room assignments.\n- Designed an interactive visual floor plan displaying real-time occupancy and remaining room capacity.",
+      "fr": "- Développement côté client de la gestion CRUD des employés, avec validation des saisies en temps réel et persistance LocalStorage.\n- Mise en place de contraintes de capacité des salles et de filtres d'accès par rôle pour optimiser l'affectation des employés.\n- Conception d'un plan interactif affichant l'occupation et les places disponibles en temps réel."
+    }
   },
   {
     "id": "proj-wavepms",
     "type": "project",
-    "title": "WavePMS",
+    "title": {
+      "en": "WavePMS",
+      "fr": "WavePMS"
+    },
     "date": "2026",
     "link": "https://github.com/yassinmaftah/wavepms-saas",
-    "sub": "Laravel 12, PostgreSQL, stancl/tenancy, Filament 5, Livewire 3, Tailwind CSS, Docker",
-    "text": "- Architected multi-tenancy with PostgreSQL schema isolation via stancl/tenancy for client data separation.\n- Developed 8 role-based dashboards with Filament and Livewire for front desk, instructors, and kitchen.\n- Integrated magic-link guest portal with digital waiver signing and flight delay tracking via external APIs."
+    "sub": {
+      "en": "Laravel 12, PostgreSQL, stancl/tenancy, Filament 5, Livewire 3, Tailwind CSS, Docker",
+      "fr": "Laravel 12, PostgreSQL, stancl/tenancy, Filament 5, Livewire 3, Tailwind CSS, Docker"
+    },
+    "text": {
+      "en": "- Architected multi-tenancy with PostgreSQL schema isolation via stancl/tenancy for client data separation.\n- Developed 8 role-based dashboards with Filament and Livewire for front desk, instructors, and kitchen.\n- Integrated magic-link guest portal with digital waiver signing and flight delay tracking via external APIs.",
+      "fr": "- Conception d'une architecture SaaS multi-tenant avec isolation des schémas PostgreSQL via stancl/tenancy.\n- Développement de huit tableaux de bord par rôle avec Filament et Livewire pour l'accueil, les moniteurs et la cuisine.\n- Intégration d'un portail client par lien magique, de la signature de décharges numériques et du suivi des retards de vol via API externes."
+    }
   },
   {
     "id": "proj-quranplatform",
     "type": "project",
-    "title": "QuranPlatform",
+    "title": {
+      "en": "QuranPlatform",
+      "fr": "QuranPlatform"
+    },
     "date": "2026",
     "link": "https://github.com/yassinmaftah/backend-Q",
-    "sub": "Laravel 12, React 19, Vite 8, Tailwind CSS v4, SQLite/MySQL, Sanctum, Docker",
-    "text": "- Built decoupled Laravel 12 REST API with Sanctum auth and React 19 SPA styled with Tailwind CSS v4.\n- Created interactive Hifz memorization tracker with 240-Thumon progress mandala and streak heatmaps.\n- Implemented video tafsir library with YouTube oEmbed integration and back-office administrative moderation."
+    "sub": {
+      "en": "Laravel 12, React 19, Vite 8, Tailwind CSS v4, SQLite/MySQL, Sanctum, Docker",
+      "fr": "Laravel 12, React 19, Vite 8, Tailwind CSS v4, SQLite/MySQL, Sanctum, Docker"
+    },
+    "text": {
+      "en": "- Built decoupled Laravel 12 REST API with Sanctum auth and React 19 SPA styled with Tailwind CSS v4.\n- Created interactive Hifz memorization tracker with 240-Thumon progress mandala and streak heatmaps.\n- Implemented video tafsir library with YouTube oEmbed integration and back-office administrative moderation.",
+      "fr": "- Développement d'une API REST Laravel 12 découplée avec authentification Sanctum et d'une SPA React 19 stylisée avec Tailwind CSS v4.\n- Création d'un suivi interactif de mémorisation du Coran avec mandala de progression sur 240 Thumon et calendriers de régularité.\n- Intégration d'une bibliothèque vidéo de tafsir via YouTube oEmbed et d'une interface d'administration pour la modération."
+    }
   },
   {
     "id": "proj-youcode",
     "type": "project",
-    "title": "YouCode",
+    "title": {
+      "en": "YouCode",
+      "fr": "YouCode"
+    },
     "date": "2026",
     "link": "https://github.com/yassinmaftah/yc-backend",
-    "sub": "Laravel 12, React 19, Vite 8, Tailwind CSS v4, Dompdf, Docker",
-    "text": "- Developed drag-and-drop ATS recruitment Kanban pipeline with custom hiring stages and deadline tracking.\n- Implemented interactive quiz and poll feed with real-time voting animations and instant explanations.\n- Built career asset vault and public recruiter portfolio with server-side PDF resume generation via Dompdf."
+    "sub": {
+      "en": "Laravel 12, React 19, Vite 8, Tailwind CSS v4, Dompdf, Docker",
+      "fr": "Laravel 12, React 19, Vite 8, Tailwind CSS v4, Dompdf, Docker"
+    },
+    "text": {
+      "en": "- Developed drag-and-drop ATS recruitment Kanban pipeline with custom hiring stages and deadline tracking.\n- Implemented interactive quiz and poll feed with real-time voting animations and instant explanations.\n- Built career asset vault and public recruiter portfolio with server-side PDF resume generation via Dompdf.",
+      "fr": "- Développement d'un pipeline de recrutement ATS de type Kanban par glisser-déposer, avec étapes personnalisables et suivi des échéances.\n- Création d'un fil interactif de quiz et de sondages avec animations de vote en temps réel et explications immédiates.\n- Mise en place d'un espace de ressources professionnelles et d'un portfolio public pour les recruteurs, avec génération de CV PDF côté serveur via Dompdf."
+    }
   }
 ]
