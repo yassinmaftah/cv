@@ -1,0 +1,81 @@
+# CV Builder is a standalone static site. Project repositories are tracked as
+# references but must not be cloned by the GitHub Pages Jekyll checkout.
+[submodule "Projects/AlloMaalem"]
+	path = Projects/AlloMaalem
+	url = https://github.com/yassinmaftah/AlloMaalem.git
+	update = none
+
+[submodule "Projects/DeliveryETA"]
+	path = Projects/DeliveryETA
+	url = https://github.com/yassinmaftah/DeliveryETA.git
+	update = none
+
+[submodule "Projects/EasyColoc"]
+	path = Projects/EasyColoc
+	url = https://github.com/yassinmaftah/EasyColoc.git
+	update = none
+
+[submodule "Projects/NeuroScan-AI"]
+	path = Projects/NeuroScan-AI
+	url = https://github.com/yassinmaftah/NeuroScan-AI.git
+	update = none
+
+[submodule "Projects/Quran/backend-Q"]
+	path = Projects/Quran/backend-Q
+	url = https://github.com/yassinmaftah/backend-Q.git
+	update = none
+
+[submodule "Projects/Quran/frontend-Q"]
+	path = Projects/Quran/frontend-Q
+	url = https://github.com/yassinmaftah/frontend-Q.git
+	update = none
+
+[submodule "Projects/VirtualWorkspace"]
+	path = Projects/VirtualWorkspace
+	url = https://github.com/yassinmaftah/VirtualWorkspace.git
+	update = none
+
+[submodule "Projects/ade/ade-backend"]
+	path = Projects/ade/ade-backend
+	url = https://github.com/yassinmaftah/ade-backend.git
+	update = none
+
+[submodule "Projects/ade/ade-frontend"]
+	path = Projects/ade/ade-frontend
+	url = https://github.com/yassinmaftah/ade-frontend.git
+	update = none
+
+[submodule "Projects/brainscan-ai"]
+	path = Projects/brainscan-ai
+	url = https://github.com/yassinmaftah/brainscan-ai.git
+	update = none
+
+[submodule "Projects/bus/bookbus-laravel"]
+	path = Projects/bus/bookbus-laravel
+	url = https://github.com/yassinmaftah/bookbus-laravel.git
+	update = none
+
+[submodule "Projects/diabetes-risk-mlops"]
+	path = Projects/diabetes-risk-mlops
+	url = https://github.com/yassinmaftah/diabetes-risk-mlops.git
+	update = none
+
+[submodule "Projects/s-MeteoRisk"]
+	path = Projects/s-MeteoRisk
+	url = https://github.com/yassinmaftah/s-MeteoRisk.git
+	update = none
+
+[submodule "Projects/wavepms-saas"]
+	path = Projects/wavepms-saas
+	url = https://github.com/yassinmaftah/wavepms-saas.git
+	update = none
+
+[submodule "Projects/youcode/yc-backend"]
+	path = Projects/youcode/yc-backend
+	url = https://github.com/yassinmaftah/yc-backend.git
+	update = none
+
+[submodule "Projects/youcode/yc-frontend"]
+	path = Projects/youcode/yc-frontend
+	url = https://github.com/yassinmaftah/yc-frontend.git
+	update = none
