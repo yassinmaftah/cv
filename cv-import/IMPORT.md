@@ -1,26 +1,22 @@
-# Bilingual project import (English / French)
+# Import projects and switch CV languages
 
-The CV builder stores its data locally in your browser under `cvbuilder.v1`. No account or server is required.
+Visit https://yassinmaftah.github.io/cv/ (version **v2.1 · EN/FR** in the header).
 
-## Import or update your 12 projects (recommended)
+## Import projects
 
-1. Open https://yassinmaftah.github.io/cv/
-2. Click **Import projects** in the header.
-3. Download and select **cv-import/projects-items-only.json** from this repository (or use **cv-import/projects.json**, which is also supported).
-4. The 12 projects are **merged by project ID** into your saved information. Your existing CVs, profile, skills, other entries and project selections are preserved.
-5. Open **2. Create CV**, choose projects on the left, then select **EN** or **FR** from the **Language** menu. Titles, descriptions and technology subtitles change automatically.
+1. Download [projects-items-only.json](./projects-items-only.json).
+2. Click **+ Import projects (EN / FR)** and select the JSON file.
+3. Open **2. Create CV** and add your projects from the left panel.
+4. Select **EN** or **FR** in the language selector. The CV switches titles, subtitles and bullet points without changing project selections.
 
-## Enter bilingual content
+You can also use **Import JSON / Backup**: the builder automatically detects project-list JSON vs complete backup JSON. Project lists are merged without replacing your CVs; complete backups require confirmation before replacing existing data.
 
-In **1. My Info**, enter English and French versions separately for profile headline, languages, technology categories, project titles, subtitles and descriptions, experience, education and other entries. URLs, dates, phone numbers and email addresses are language-neutral.
+The 12 projects in this repository have both translations. If an older English-only project file uses the same IDs, French translations are filled from the built-in dictionary, while any existing manually edited French translations are preserved.
 
-In **2. Create CV**, the headline input edits **only the currently selected language**. Switching EN/FR shows the independently saved version.
+## Editing your CV
 
-## Backup and compatibility
+In **1. My Info**, the headline, languages, technology fields, project/experience/education title, subtitle, and descriptions have separate **EN** and **FR** inputs. Phone, email, URLs and dates are shared. In **2. Create CV**, the headline input edits only the selected language.
 
-- **Export backup** saves all current content and both translations.
-- **Import backup** replaces your entire saved state from a full backup file; use it only when you actually want a full restore.
-- **Import projects** is non-destructive and accepts either a project array or a JSON object with an `items` array. Non-project entries in that file are ignored.
-- Existing old English-only saved strings remain readable. They appear in EN and are used as a fallback in FR until you enter a translation.
+Use **Export backup** to save your complete bilingual profile and all CVs. Existing browser data and old backups remain supported. The site stores everything in browser localStorage (`cvbuilder.v1`).
 
-The repository's **cv-import/projects-items-only.json**, **cv-import/projects.json**, and **cv-backup.json** include English and French versions of all 12 imported projects.
+**Troubleshooting:** If the header still doesn't show v2.1 or the **+ Import projects** button, force-refresh the page with **Ctrl + Shift + R** to bypass cached GitHub Pages content.
