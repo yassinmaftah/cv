@@ -116,6 +116,8 @@ label{display:block;font-size:12px;color:var(--mut);margin:8px 0 3px}
  <span class="sp"></span>
  <button id="exp">Export backup</button>
  <button id="imp">Import backup</button>
+  <button id="impProjects" title="Merge projects without replacing existing CVs">Import projects</button>
+  <input id="projectFile" type="file" accept=".json" hidden>
  <input id="impf" type="file" accept=".json" hidden>
 </header>
 <div id="view"></div>
@@ -131,7 +133,7 @@ let S;
 // Bilingual helpers
 const normBi=v=>{
  if(v==null)return{en:'',fr:''};
- if(typeof v==='string')return{en:v,fr:v};
+ if(typeof v==='string')return{en:v,fr:''};
  return{en:v.en||'',fr:v.fr||''};
 };
 
@@ -219,6 +221,7 @@ function normalizeState(){
  if(S.cvs){
   S.cvs.forEach(c=>{
    if(!c.lang)c.lang='en';
+    c.headline=normBi(c.headline);
   });
  }
 }
@@ -531,10 +534,10 @@ function viewCV(){
 
  $('#cs').onchange=e=>{S.cur=e.target.value;save();viewCV()};
  $('#cvLang').onchange=e=>{c.lang=e.target.value;save();viewCV()};
- $('#cn').onclick=()=>{const n=prompt('Name of the new CV (e.g. AI/ML Engineer)');if(!n)return;const d={id:uid(),name:n,lang:c.lang||'en',headline:'',ids:[],accent:c.accent,photo:c.photo};S.cvs.push(d);S.cur=d.id;save();viewCV()};
+ $('#cn').onclick=()=>{const n=prompt('Name of the new CV (e.g. AI/ML Engineer)');if(!n)return;const d={id:uid(),name:n,lang:c.lang||'en',headline:{en:'',fr:''},ids:[],accent:c.accent,photo:c.photo};S.cvs.push(d);S.cur=d.id;save();viewCV()};
  $('#cr').onclick=()=>{const n=prompt('New name',c.name);if(n){c.name=n;save();viewCV()}};
  $('#cd').onclick=()=>{if(S.cvs.length<2){alert('You need at least one CV');return}if(confirm('Delete this CV? (your saved info stays)')){S.cvs=S.cvs.filter(x=>x!==c);S.cur=S.cvs[0].id;save();viewCV()}};
- $('#hl').oninput=e=>{c.headline=e.target.value;save();page()};
+ $('#hl').oninput=e=>{c.headline=normBi(c.headline);c.headline[c.lang]=e.target.value;save();page()};
  $('#ac').oninput=e=>{c.accent=e.target.value;save();page()};
  $('#sp').onchange=e=>{c.photo=e.target.checked;save();page()};
  $('#pdf').onclick=()=>{alert('In the print window choose "Save as PDF" as destination, and turn OFF "Headers and footers".');window.print()};
@@ -678,6 +681,34 @@ addEventListener('resize',fit);
 function tab(t){S.tab=t;save();$('#tInfo').classList.toggle('on',t==='info');$('#tCV').classList.toggle('on',t==='cv');t==='info'?viewInfo():viewCV()}
 $('#tInfo').onclick=()=>tab('info');$('#tCV').onclick=()=>tab('cv');
 $('#exp').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,2)],{type:'application/json'}));a.download='cv-backup.json';a.click()};
+// Import project-only files by ID without deleting other saved information or CVs.
+function mergeProjects(payload){
+ const incoming=Array.isArray(payload)?payload:(payload&&Array.isArray(payload.items)?payload.items:null);
+ if(!incoming)throw Error('Expected a project array or an object containing items');
+ const projects=incoming.filter(i=>i&&i.type==='project'&&typeof i.id==='string'&&i.id.trim());
+ if(!projects.length)throw Error('No project entries found');
+ const ids=new Set(projects.map(i=>i.id));
+ const normalized=projects.map(i=>({
+  id:i.id,type:'project',date:String(i.date||''),link:String(i.link||''),
+  title:normBi(i.title),sub:normBi(i.sub),text:normBi(i.text)
+ }));
+ // Preserve existing CV selections, experience, skills, and manually added items.
+ S.items=S.items.filter(i=>!ids.has(i.id)).concat(normalized);
+ save();
+ if(S.tab==='info')list();else viewCV();
+ return normalized.length;
+}
+$('#impProjects').onclick=()=>$('#projectFile').click();
+$('#projectFile').onchange=e=>{
+ const file=e.target.files[0];if(!file)return;
+ const reader=new FileReader();
+ reader.onload=()=>{
+  try{const count=mergeProjects(JSON.parse(reader.result));alert(count+' projects imported or updated. Select them in Create CV.');}
+  catch(err){alert('Could not import projects: '+err.message)}
+  e.target.value='';
+ };
+ reader.readAsText(file);
+};
 $('#imp').onclick=()=>$('#impf').click();
 $('#impf').onchange=e=>{
  const f=e.target.files[0];if(!f)return;
