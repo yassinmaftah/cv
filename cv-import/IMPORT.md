@@ -1,64 +1,26 @@
-# How to Import Projects into Your CV Builder
+# Bilingual project import (English / French)
 
-Your CV builder website ([yassinmaftah.github.io/cv](https://yassinmaftah.github.io/cv/)) uses a local-first architecture storing all state inside your browser's `localStorage` under the key `cvbuilder.v1`.
+The CV builder stores its data locally in your browser under `cvbuilder.v1`. No account or server is required.
 
-We generated **`cv-import/projects.json`** in the exact JSON schema required by the site's native **Import backup** button.
+## Import or update your 12 projects (recommended)
 
----
+1. Open https://yassinmaftah.github.io/cv/
+2. Click **Import projects** in the header.
+3. Download and select **cv-import/projects-items-only.json** from this repository (or use **cv-import/projects.json**, which is also supported).
+4. The 12 projects are **merged by project ID** into your saved information. Your existing CVs, profile, skills, other entries and project selections are preserved.
+5. Open **2. Create CV**, choose projects on the left, then select **EN** or **FR** from the **Language** menu. Titles, descriptions and technology subtitles change automatically.
 
-## Method 1: One-Click GUI Import (Recommended)
+## Enter bilingual content
 
-1. Open your CV website in your browser:
-   👉 **[https://yassinmaftah.github.io/cv/](https://yassinmaftah.github.io/cv/)**
-2. In the top navigation header, locate the **`Import backup`** button (next to `Export backup`).
-3. Click **`Import backup`**.
-4. In the file picker dialog that opens, navigate to:
-   📂 `C:\Users\yassi\Desktop\cv_data\cv-import\projects.json`
-5. Select the file and click **Open**.
-6. That's it!
-   - All **12 projects** will be instantly loaded into your **Saved info** list.
-   - Your personal profile (Name, Email, Phone, GitHub, LinkedIn, Languages) and existing technologies categories are 100% preserved.
-   - Switch to tab **`2. Create CV`** to toggle, reorder, or customize which projects appear on your generated CV.
+In **1. My Info**, enter English and French versions separately for profile headline, languages, technology categories, project titles, subtitles and descriptions, experience, education and other entries. URLs, dates, phone numbers and email addresses are language-neutral.
 
----
+In **2. Create CV**, the headline input edits **only the currently selected language**. Switching EN/FR shows the independently saved version.
 
-## Method 2: Browser Developer Console Merge (Alternative)
+## Backup and compatibility
 
-If you have already made manual edits in your browser session that you don't want to replace, you can merge only the 12 projects directly into your active browser storage without touching your current profile or settings:
+- **Export backup** saves all current content and both translations.
+- **Import backup** replaces your entire saved state from a full backup file; use it only when you actually want a full restore.
+- **Import projects** is non-destructive and accepts either a project array or a JSON object with an `items` array. Non-project entries in that file are ignored.
+- Existing old English-only saved strings remain readable. They appear in EN and are used as a fallback in FR until you enter a translation.
 
-1. Open **[https://yassinmaftah.github.io/cv/](https://yassinmaftah.github.io/cv/)** in Chrome / your browser.
-2. Press **F12** (or `Ctrl + Shift + I`) to open Developer Tools, then click the **Console** tab.
-3. Open the file **`cv-import/projects-items-only.json`**, copy its entire contents, and run this one-line command in the console:
-
-```javascript
-(function(newProjects) {
-  const KEY = 'cvbuilder.v1';
-  let data = JSON.parse(localStorage.getItem(KEY)) || { profile: {}, items: [], cvs: [{ id: 'c1', name: 'Master CV', headline: 'Full-Stack Developer', ids: [], accent: '#2f4a7d', photo: true }] };
-  
-  // Remove any previous project entries with these IDs to prevent duplicates
-  const newIds = new Set(newProjects.map(p => p.id));
-  data.items = data.items.filter(i => !newIds.has(i.id) && i.id !== 'a1');
-  
-  // Append new projects
-  data.items.push(...newProjects);
-  
-  // Ensure Master CV includes the new project IDs
-  const activeCv = data.cvs.find(c => c.id === data.cur) || data.cvs[0];
-  newProjects.forEach(p => {
-    if (!activeCv.ids.includes(p.id)) activeCv.ids.push(p.id);
-  });
-  
-  localStorage.setItem(KEY, JSON.stringify(data));
-  location.reload();
-})(/* PASTE JSON HERE */);
-```
-
----
-
-## Verification Checklist
-
-After importing:
-- [ ] Go to tab **`1. My Info`** -> Scroll down to **Saved info** -> Click **Projects**. You should see all 12 projects listed with their titles, dates, links, and technologies.
-- [ ] Go to tab **`2. Create CV`**. On the left panel, click on **Projects (12)** to expand. You can click any project to add or remove it from the live CV page.
-- [ ] Reorder projects on the page using the `↑` and `↓` buttons on each project card.
-- [ ] Click **Download PDF** when ready to print or save your resume.
+The repository's **cv-import/projects-items-only.json**, **cv-import/projects.json**, and **cv-backup.json** include English and French versions of all 12 imported projects.
