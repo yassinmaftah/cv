@@ -116,7 +116,7 @@ label{display:block;font-size:12px;color:var(--mut);margin:8px 0 3px}
  <span class="sp"></span>
  <button id="exp">Export backup</button>
  <button id="imp" title="Import a full backup or a project list">Import JSON / Backup</button>
-  <button id="impProjects" class="pri" title="Merge projects without replacing existing CVs">+ Import projects (EN / FR)</button>
+  <button id="impProjects" class="pri" title="Merge projects and technologies without replacing existing CVs">+ Import data (EN / FR)</button>
   <input id="projectFile" type="file" accept=".json" hidden>
  <input id="impf" type="file" accept=".json" hidden>
 </header>
@@ -694,46 +694,38 @@ function projectRows(data){
  if(data && Array.isArray(data.items))return data.items;
  throw Error('Expected a JSON array of projects or an object containing "items".');
 }
-function mergeProjects(payload){
+function mergeItems(payload){
  const incoming=projectRows(payload);
- const projects=incoming.filter(i=>i && i.type==='project' && typeof i.id==='string' && i.id.trim());
- if(!projects.length)throw Error('No projects found. Choose a project JSON file.');
- const unique=new Map(projects.map(i=>[i.id,i]));
- let added=0,updated=0;
+ const valid=incoming.filter(i=>i && ['project','technologies'].includes(i.type) && typeof i.id==='string' && i.id.trim());
+ if(!valid.length)throw Error('No project or technology entries in this file.');
+ const unique=new Map(valid.map(i=>[i.id,i]));
+ let added=0,updated=0,projects=0,technologies=0;
  for(const [id,item] of unique){
-  const previous=S.items.find(x=>x.id===id);
-  const known=PROJECT_TRANSLATIONS[id]||{};
+  const previous=S.items.find(i=>i.id===id);
+  const known=item.type==='project'?(PROJECT_TRANSLATIONS[id]||{}):{};
   const field=(key)=>{
    const incoming=normBi(item[key]), old=normBi(previous&&previous[key]);
-   const importedFrench=typeof item[key]==='object' && item[key]!==null && typeof item[key].fr==='string' && item[key].fr.trim();
-   return {
-    en:incoming.en||old.en,
-    fr:importedFrench?incoming.fr:(old.fr||known[key]||incoming.fr||'')
-   };
+   const explicitFrench=item[key] && typeof item[key]==='object' && typeof item[key].fr==='string' && item[key].fr.trim();
+   return {en:incoming.en||old.en,fr:explicitFrench?incoming.fr:(old.fr||known[key]||incoming.fr||'')};
   };
-  const merged={id,type:'project',date:String(item.date||previous?.date||''),
-   link:String(item.link||previous?.link||''),
-   title:field('title'),sub:field('sub'),text:field('text')};
-  if(previous){Object.assign(previous,merged);updated++}
-  else{S.items.push(merged);added++}
+  const entry={id,type:item.type,date:String(item.date||previous?.date||''),
+   link:String(item.link||previous?.link||''),title:field('title'),sub:field('sub'),text:field('text')};
+  if(previous){Object.assign(previous,entry);updated++}else{S.items.push(entry);added++}
+  if(item.type==='project')projects++;else technologies++;
  }
- // Replace the original starter Allo Maalem record with the canonical import ID,
- // without silently deleting a user's unrelated custom project.
- if(unique.has('proj-allomaalem')){
-  const legacy=S.items.find(i=>i.id==='a1' && i.type==='project' &&
-   /Allo Maalem/i.test(tVal(i.title,'en')));
-  if(legacy){
-   S.items=S.items.filter(i=>i!==legacy);
-   for(const c of S.cvs){
-    const hadLegacy=c.ids.includes('a1');
-    c.ids=c.ids.filter(id=>id!=='a1');
-    if(hadLegacy && !c.ids.includes('proj-allomaalem'))c.ids.push('proj-allomaalem');
-   }
-  }
+ // Map five original starter skills and the starter project to canonical IDs.
+ const legacyIds={a1:'proj-allomaalem',t1:'tech-front-end',t2:'tech-back-end',t3:'tech-databases',t4:'tech-machine-learning',t5:'tech-mlops-deployment'};
+ const legacyTitles={a1:/Allo Maalem/i,t1:/Front.End/i,t2:/Back.End/i,t3:/Databases|Bases de donn/i,t4:/Machine Learning/i,t5:/MLOps/i};
+ for(const [oldId,newId] of Object.entries(legacyIds)){
+  if(!unique.has(newId))continue;
+  const old=S.items.find(i=>i.id===oldId);
+  if(!old || !legacyTitles[oldId].test(tVal(old.title,'en')))continue;
+  S.items=S.items.filter(i=>i!==old);
+  S.cvs.forEach(c=>{c.ids=c.ids.map(id=>id===oldId?newId:id).filter((id,pos,a)=>a.indexOf(id)===pos)});
  }
  save();
  if(S.tab==='info')list();else viewCV();
- return {added,updated};
+ return {added,updated,projects,technologies};
 }
 function importJSON(data,onlyProjects){
  if(!onlyProjects && isFullBackup(data)){
@@ -741,8 +733,8 @@ function importJSON(data,onlyProjects){
   S=data;normalizeState();save();tab(S.tab||'info');
   return 'Full CV backup restored successfully.';
  }
- const {added,updated}=mergeProjects(data);
- return added+' projects added and '+updated+' projects updated. Your existing CVs and profile were preserved.';
+ const {added,updated,projects,technologies}=mergeItems(data);
+ return added+' items added and '+updated+' updated ('+projects+' projects, '+technologies+' technology categories). Existing CVs and profile preserved.';
 }
 function attachImport(buttonId,fileId,onlyProjects){
  $(buttonId).onclick=()=>$(fileId).click();
