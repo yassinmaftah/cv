@@ -68,6 +68,10 @@ label{display:block;font-size:12px;color:var(--mut);margin:8px 0 3px}
 #page .ct-sep{margin:0 7px;color:#888;font-size:10px}
 #page .ct-ico{width:12px;height:12px;margin-right:4px;vertical-align:-1.5px;flex-shrink:0;fill:currentColor}
 
+/* Linked GitHub portfolio count in the printed CV and on-screen preview. */
+#page h3 .project-count-link{color:inherit;text-decoration:none;display:inline-flex;align-items:baseline;gap:7px}
+#page h3 .project-count-link:hover{text-decoration:underline}
+#page h3 .project-count{font-size:.85em;font-weight:700;letter-spacing:0;opacity:.85}
 /* CV Sections & Items */
 #page h3{margin:14px 0 6px;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--cvac,#1d2330);border-bottom:1.5px solid var(--cvac,#1d2330);padding-bottom:2px}
 #page .it{position:relative;margin-bottom:8px}
@@ -651,7 +655,9 @@ function page(){
   else if(t==='education')secTitle=l==='fr'?'Formation':'Education';
   else if(t==='other')secTitle=l==='fr'?'Autres':'Other';
 
-  h+=`<h3>${esc(secTitle)}</h3>`;
+  h+=t==='project'
+   ?`<h3><a class="project-count-link" href="https://github.com/yassinmaftah" target="_blank" rel="noopener noreferrer" title="Explore my GitHub repositories">${esc(secTitle)} <span class="project-count">30+</span></a></h3>`
+   :`<h3>${esc(secTitle)}</h3>`;
   if(t==='technologies'){
    h+=`<div class="tech-cols">`+a.map(i=>`<div class="tech-item it"><div class="ctl"><button data-a="up" data-id="${i.id}">↑</button><button data-a="down" data-id="${i.id}">↓</button><button data-a="rm" data-id="${i.id}">✕</button></div><b>${esc(tVal(i.title,l).replace(/\s*:?\s*$/,''))} :</b> ${esc(tVal(i.text,l))}</div>`).join('')+`</div>`;
   }else{
