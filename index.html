@@ -106,7 +106,8 @@ label{display:block;font-size:12px;color:var(--mut);margin:8px 0 3px}
  @page{size:A4;margin:0}
  body *{visibility:hidden}
  #page,#page *{visibility:visible}
- #page{position:absolute;left:0;top:0;box-shadow:none;width:210mm;min-height:297mm;padding:12mm 14mm}
+ /* Keep the exact CV layout and wording; shrink ONLY the print rendering when needed. */
+ #page{position:absolute;left:0;top:0;box-shadow:none;width:210mm;min-height:0;padding:12mm 14mm;zoom:var(--cv-print-scale,1)}
  #pagebox{transform:none!important;height:auto!important;width:auto!important;margin:0!important}
  .ctl,.empty{display:none!important}
 }
@@ -544,7 +545,7 @@ function viewCV(){
  $('#hl').oninput=e=>{c.headline=normBi(c.headline);c.headline[c.lang]=e.target.value;save();page()};
  $('#ac').oninput=e=>{c.accent=e.target.value;save();page()};
  $('#sp').onchange=e=>{c.photo=e.target.checked;save();page()};
- $('#pdf').onclick=()=>{alert('In the print window choose "Save as PDF" as destination, and turn OFF "Headers and footers".');window.print()};
+ $('#pdf').onclick=()=>{fitPrintToA4();window.print()};
 
  $('#left').onclick=e=>{
   const b=e.target.closest('button');if(!b)return;
@@ -681,6 +682,29 @@ function page(){
 }
 
 function fit(){const b=$('#pagebox'),pg=$('#page');if(!b)return;const av=($('#right').clientWidth||800)-24,k=Math.min(1,av/794);b.style.transform=`scale(${k})`;b.style.height=(pg.offsetHeight*k)+'px';b.style.width='794px';b.style.marginBottom='0'}
+
+// A4 is 210 x 297 mm. Keep the original design untouched on screen.
+// An offscreen copy at the *print* width gives the real wrapped content height.
+// CSS zoom (unlike transform) shrinks printed pagination as well as the visuals.
+function fitPrintToA4(){
+ const page=document.querySelector('#page');
+ if(!page)return;
+ const sample=page.cloneNode(true);
+ sample.removeAttribute('id');
+ sample.style.cssText='position:absolute!important;left:-20000px!important;top:0!important;transform:none!important;zoom:1!important;box-shadow:none!important;width:210mm!important;min-height:0!important;height:auto!important;padding:12mm 14mm!important;overflow:visible!important;visibility:hidden!important;';
+ // Since we removed its ID, preserve the page's scoped styling for measurement.
+ sample.id='page';
+ sample.setAttribute('aria-hidden','true');
+ sample.style.setProperty('--cv-print-scale','1');
+ document.body.appendChild(sample);
+ const height=sample.getBoundingClientRect().height;
+ sample.remove();
+ const mmInPx=96/25.4;
+ const maxHeight=294*mmInPx; // reserve a 3 mm safety margin for PDF printers
+ const scale=height>0?Math.min(1,maxHeight/height):1;
+ page.style.setProperty('--cv-print-scale',String(Math.max(.1,scale*0.996)));
+}
+addEventListener('beforeprint',fitPrintToA4);
 addEventListener('resize',fit);
 
 /* ---------- shell ---------- */
