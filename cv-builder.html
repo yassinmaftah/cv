@@ -651,13 +651,13 @@ function page(){
   any=true;
   let secTitle=typeLabel;
   if(t==='technologies')secTitle=l==='fr'?'Compétences Techniques':'Technical Skills';
-  else if(t==='project')secTitle=l==='fr'?'Projets':'Projects';
+  else if(t==='project')secTitle=l==='fr'?'Projet réalisé':'Projects';
   else if(t==='experience')secTitle=l==='fr'?'Expérience Professionnelle':'Experience';
   else if(t==='education')secTitle=l==='fr'?'Formation':'Education';
   else if(t==='other')secTitle=l==='fr'?'Autres':'Other';
 
   h+=t==='project'
-   ?`<h3><a class="project-count-link" href="https://github.com/yassinmaftah" target="_blank" rel="noopener noreferrer" title="Explore my GitHub repositories">${esc(secTitle)} <span class="project-count">30+</span></a></h3>`
+   ?`<h3><a class="project-count-link" href="https://github.com/yassinmaftah" target="_blank" rel="noopener noreferrer" title="Explore my GitHub repositories">${esc(secTitle)}${l==='fr'?'':' <span class="project-count">30+</span>'}</a></h3>`
    :`<h3>${esc(secTitle)}</h3>`;
   if(t==='technologies'){
    h+=`<div class="tech-cols">`+a.map(i=>`<div class="tech-item it"><div class="ctl"><button data-a="up" data-id="${i.id}">↑</button><button data-a="down" data-id="${i.id}">↓</button><button data-a="rm" data-id="${i.id}">✕</button></div><b>${esc(tVal(i.title,l).replace(/\s*:?\s*$/,''))} :</b> ${esc(tVal(i.text,l))}</div>`).join('')+`</div>`;
