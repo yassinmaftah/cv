@@ -657,7 +657,7 @@ function page(){
   else if(t==='other')secTitle=l==='fr'?'Autres':'Other';
 
   h+=t==='project'
-   ?`<h3><a class="project-count-link" href="https://github.com/yassinmaftah" target="_blank" rel="noopener noreferrer" title="Explore my GitHub repositories">${esc(secTitle)}${l==='fr'?'':' <span class="project-count">30+</span>'}</a></h3>`
+   ?`<h3><a class="project-count-link" href="https://github.com/yassinmaftah" target="_blank" rel="noopener noreferrer" title="Explore my GitHub repositories">${esc(secTitle)} <span class="project-count">${l==='fr'?'+20':'30+'}</span></a></h3>`
    :`<h3>${esc(secTitle)}</h3>`;
   if(t==='technologies'){
    h+=`<div class="tech-cols">`+a.map(i=>`<div class="tech-item it"><div class="ctl"><button data-a="up" data-id="${i.id}">↑</button><button data-a="down" data-id="${i.id}">↓</button><button data-a="rm" data-id="${i.id}">✕</button></div><b>${esc(tVal(i.title,l).replace(/\s*:?\s*$/,''))} :</b> ${esc(tVal(i.text,l))}</div>`).join('')+`</div>`;
