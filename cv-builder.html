@@ -75,6 +75,8 @@ label{display:block;font-size:12px;color:var(--mut);margin:8px 0 3px}
 /* CV Sections & Items */
 #page h3{margin:14px 0 6px;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--cvac,#1d2330);border-bottom:1.5px solid var(--cvac,#1d2330);padding-bottom:2px}
 #page .it{position:relative;margin-bottom:8px}
+#page .cert-item{font-size:12px;line-height:1.45;margin-bottom:4px;break-inside:avoid;overflow-wrap:anywhere}
+#page .cert-item .t{font-size:inherit}
 #page .it-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 #page .t{font-weight:700;font-size:13px}
 #page .t a{color:#1a1a1a;text-decoration:underline;text-decoration-color:var(--cvac)}
@@ -131,7 +133,7 @@ label{display:block;font-size:12px;color:var(--mut);margin:8px 0 3px}
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const url=u=>!u?'':(/^(https?:|mailto:|tel:)/.test(u)?u:'https://'+u);
-const TYPES=[['technologies','Technologies'],['project','Projects'],['experience','Experience'],['education','Education'],['other','Other']];
+const TYPES=[['technologies','Technologies'],['project','Projects'],['experience','Experience'],['education','Education'],['certificate','Certificates'],['other','Other']];
 const KEY='cvbuilder.v1';
 let S;
 
@@ -314,13 +316,13 @@ function viewInfo(){
   </div>
  </div>
 
- <div class="card"><h2 id="fh">Add info (Projects, Experience, Education, Other)</h2>
+ <div class="card"><h2 id="fh">Add info (Projects, Experience, Education, Certificates, Other)</h2>
   <div class="g2">
    <div><label>Type</label><select id="ft">${TYPES.filter(([t])=>t!=='technologies').map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></div>
-   <div><label>Date (optional, e.g. 2026 or 05/2026 - 07/2026)</label><input id="fdt" placeholder="2026 or 05/2026 - 07/2026"></div>
+   <div id="itemDate"><label>Date (optional, e.g. 2026 or 05/2026 - 07/2026)</label><input id="fdt" placeholder="2026 or 05/2026 - 07/2026"></div>
   </div>
   <div style="margin-top:6px">
-   <label>Link (optional)</label><input id="fl" placeholder="https://github.com/...">
+   <label id="itemLinkLabel">Link (optional)</label><input id="fl" placeholder="https://github.com/...">
   </div>
 
   <div class="g2" style="margin-top:6px">
@@ -337,7 +339,7 @@ function viewInfo(){
    </div>
   </div>
 
-  <div class="g2" style="margin-top:6px">
+  <div id="itemSub" class="g2" style="margin-top:6px">
    <div>
     <label>Small line (English: company, tech stack...)</label>
     <input id="fsEn" placeholder="e.g. Laravel 12, React, Tailwind CSS">
@@ -353,12 +355,12 @@ function viewInfo(){
 
   <div class="g2" style="margin-top:6px">
    <div>
-    <label>Text (English - start a line with "- " for a bullet point)</label>
+    <label id="itemTextEnLabel">Text (English - start a line with "- " for a bullet point)</label>
     <textarea id="fxEn" placeholder="- Built a web platform using..."></textarea>
    </div>
    <div>
     <div class="lbl-row">
-     <label>Texte (Français - commencer par "- " pour une puce)</label>
+     <label id="itemTextFrLabel">Texte (Français - commencer par "- " pour une puce)</label>
      <button type="button" class="btn-xs" id="copyTextEnFr">Copy EN to FR</button>
     </div>
     <textarea id="fxFr" placeholder="- Développé une plateforme web avec..."></textarea>
@@ -392,6 +394,8 @@ function viewInfo(){
  $('#techSave').onclick=saveTech;
  $('#techCancel').onclick=clearTech;
 
+ $('#ft').onchange=syncItemForm;
+ syncItemForm();
  $('#fsave').onclick=saveItem;
  $('#fcancel').onclick=clearForm;
 
@@ -419,6 +423,7 @@ function viewInfo(){
    }else{
     editing=id;
     $('#ft').value=i.type;
+    syncItemForm();
     $('#fdt').value=i.date||'';
     $('#fl').value=i.link||'';
     $('#ftiEn').value=i.title.en||'';
@@ -465,22 +470,40 @@ function saveTech(){
  save();clearTech();list();
 }
 
+function syncItemForm(){
+ const cert=$('#ft').value==='certificate';
+ $('#itemDate').style.display=cert?'none':'';
+ $('#itemSub').style.display=cert?'none':'';
+ $('#itemLinkLabel').textContent=cert?'Certificate link (optional)':'Link (optional)';
+ $('#fl').placeholder=cert?'https://... (certificate or credential URL)':'https://github.com/...';
+ $('#ftiEn').placeholder=cert?'e.g. Orange Digital Center':'Project or job title';
+ $('#ftiFr').placeholder=cert?'ex. Orange Digital Center':'Titre du projet ou poste';
+ $('#itemTextEnLabel').textContent=cert?'Short description (English)':'Text (English - start a line with "- " for a bullet point)';
+ $('#itemTextFrLabel').textContent=cert?'Description courte (Français)':'Texte (Français - commencer par "- " pour une puce)';
+ $('#fxEn').placeholder=cert?'Short certificate description':'- Built a web platform using...';
+ $('#fxFr').placeholder=cert?'Courte description du certificat':'- Développé une plateforme web avec...';
+ $('#fxEn').style.minHeight=cert?'52px':'';
+ $('#fxFr').style.minHeight=cert?'52px':'';
+}
+
 function clearForm(){
  editing=null;
  ['ftiEn','ftiFr','fdt','fl','fsEn','fsFr','fxEn','fxFr'].forEach(i=>$('#'+i).value='');
- $('#fh').textContent='Add info (Projects, Experience, Education, Other)';
+ $('#fh').textContent='Add info (Projects, Experience, Education, Certificates, Other)';
  $('#fcancel').hidden=true;
+ syncItemForm();
 }
 
 function saveItem(){
  const title={en:$('#ftiEn').value.trim(),fr:$('#ftiFr').value.trim()};
  if(!title.en&&!title.fr){alert('Please write a title');return}
+ const cert=$('#ft').value==='certificate';
  const o={
   type:$('#ft').value,
-  date:$('#fdt').value.trim(),
+  date:cert?'':$('#fdt').value.trim(),
   link:$('#fl').value.trim(),
   title,
-  sub:{en:$('#fsEn').value.trim(),fr:$('#fsFr').value.trim()},
+  sub:cert?{en:'',fr:''}:{en:$('#fsEn').value.trim(),fr:$('#fsFr').value.trim()},
   text:{en:$('#fxEn').value.trim(),fr:$('#fxFr').value.trim()}
  };
  if(editing)Object.assign(S.items.find(i=>i.id===editing),o);
@@ -504,6 +527,8 @@ function list(){
    
    if(t==='technologies'){
     desc=`<b>${esc(tTitle)}</b>${badges} : <small style="color:var(--tx)">${esc(tText)}</small>`;
+   }else if(t==='certificate'){
+    desc=`<b>${esc(tTitle)}</b>${badges} ${i.link?'<small>🔗</small>':''}${tText?` : <small style="color:var(--tx)">${esc(tText)}</small>`:''}`;
    }else{
     desc=`<b>${esc(tTitle)}</b>${badges} ${i.date?`<small style="color:var(--mut)">(${esc(i.date)})</small>`:''} ${i.link?'<small>🔗</small>':''}<br><small>${esc(tSub)}</small>`;
    }
@@ -654,6 +679,7 @@ function page(){
   else if(t==='project')secTitle=l==='fr'?'Projet réalisé':'Projects';
   else if(t==='experience')secTitle=l==='fr'?'Expérience Professionnelle':'Experience';
   else if(t==='education')secTitle=l==='fr'?'Formation':'Education';
+  else if(t==='certificate')secTitle=l==='fr'?'Certificats':'Certificates';
   else if(t==='other')secTitle=l==='fr'?'Autres':'Other';
 
   h+=t==='project'
@@ -666,6 +692,11 @@ function page(){
     const itemTitle=tVal(i.title,l);
     const itemSub=tVal(i.sub,l);
     const itemText=tVal(i.text,l);
+    if(t==='certificate'){
+     const title=i.link?`<a href="${esc(url(i.link))}" target="_blank" rel="noopener noreferrer">${esc(itemTitle)}</a>`:esc(itemTitle);
+     const description=itemText.trim().replace(/\s+/g,' ');
+     return `<div class="it cert-item"><div class="ctl"><button data-a="up" data-id="${i.id}">↑</button><button data-a="down" data-id="${i.id}">↓</button><button data-a="rm" data-id="${i.id}">✕</button></div><span class="t">${title}</span>${description?' : '+esc(description):''}</div>`;
+    }
     return `<div class="it"><div class="ctl"><button data-a="up" data-id="${i.id}">↑</button><button data-a="down" data-id="${i.id}">↓</button><button data-a="rm" data-id="${i.id}">✕</button></div><div class="it-head"><span class="t">${i.link?`<a href="${esc(url(i.link))}" target="_blank">${esc(itemTitle)}</a>`:esc(itemTitle)}</span>${i.date?`<span class="d">${esc(i.date)}</span>`:''}</div>${itemSub?`<div class="s">${esc(itemSub)}</div>`:''}${fmt(itemText)}</div>`;
    }).join('');
   }
