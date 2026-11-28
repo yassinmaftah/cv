@@ -57,23 +57,16 @@ label{display:block;font-size:12px;color:var(--mut);margin:8px 0 3px}
 .tool input[type=color]{width:38px;padding:2px;height:34px}
 #pagebox{flex:none;position:relative}
 #page{transform-origin:top left}
-#page{--cv-size:14px;--cv-line:1.32;--cv-section:10px;--cv-item:6px;--cv-tech:3px;width:210mm;min-height:297mm;background:#fff;color:#1a1a1a;padding:9mm 11mm;box-shadow:0 2px 14px rgba(0,0,0,.25);font:var(--cv-size)/var(--cv-line) Arial,Calibri,sans-serif;overflow-wrap:anywhere}
-#page[data-density="compact"]{--cv-size:13.5px;--cv-line:1.25;--cv-section:7px;--cv-item:4px;--cv-tech:2px}
-#page[data-density="tight"]{--cv-size:13.333334px;--cv-line:1.17;--cv-section:5px;--cv-item:3px;--cv-tech:1px}
-#page[data-measure]{min-height:0!important;height:auto!important}
-#fitStatus{width:100%;max-width:794px;color:var(--mut);font-size:12px;line-height:1.4}
-#fitStatus[data-overflow="true"]{color:var(--tx);font-weight:600}
-#printWarning{display:none}
-button:disabled{opacity:.5;cursor:not-allowed}
-#page h1{margin:0;font-size:24px;line-height:1.15;color:var(--cvac)}
+#page{width:794px;min-height:1123px;background:#fff;color:#1a1a1a;padding:44px 48px;box-shadow:0 2px 14px rgba(0,0,0,.25);font:12.5px/1.45 Calibri,Arial,sans-serif}
+#page h1{margin:0;font-size:26px;color:var(--cvac)}
 #page .hl{font-size:14px;color:#444;margin-top:2px}
 
 /* Contact line */
-#page .ct{font-size:inherit;color:#333;margin-top:4px;line-height:1.25}
-#page .ct-item{display:inline;color:#333;text-decoration:none;overflow-wrap:anywhere}
+#page .ct{font-size:11.5px;color:#333;margin-top:7px;display:flex;flex-wrap:wrap;align-items:center;line-height:1.4}
+#page .ct-item{display:inline-flex;align-items:center;color:#333;text-decoration:none;white-space:nowrap}
 #page a.ct-item{color:#333;text-decoration:none}
 #page a.ct-item:hover{text-decoration:underline}
-#page .ct-sep{color:#555;font-size:inherit}
+#page .ct-sep{margin:0 7px;color:#888;font-size:10px}
 #page .ct-ico{width:12px;height:12px;margin-right:4px;vertical-align:-1.5px;flex-shrink:0;fill:currentColor}
 
 /* Linked GitHub portfolio count in the printed CV and on-screen preview. */
@@ -81,24 +74,23 @@ button:disabled{opacity:.5;cursor:not-allowed}
 #page h3 .project-count-link:hover{text-decoration:underline}
 #page h3 .project-count{font-size:.85em;font-weight:700;letter-spacing:0;opacity:.85}
 /* CV Sections & Items */
-#page h3{margin:var(--cv-section) 0 3px;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.035em;color:var(--cvac,#1d2330);border-bottom:1px solid var(--cvac,#1d2330);padding-bottom:2px}
-#page .it{position:relative;margin-bottom:var(--cv-item)}
-#page .cert-item{font-size:inherit;line-height:inherit;margin-bottom:var(--cv-tech);overflow-wrap:anywhere}
+#page h3{margin:14px 0 6px;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--cvac,#1d2330);border-bottom:1.5px solid var(--cvac,#1d2330);padding-bottom:2px}
+#page .it{position:relative;margin-bottom:8px}
+#page .cert-item{font-size:12px;line-height:1.45;margin-bottom:4px;break-inside:avoid;overflow-wrap:anywhere}
 #page .cert-item .t{font-size:inherit}
-#page .it-head{display:block}
-#page .t{font-weight:700;font-size:inherit}
+#page .it-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+#page .t{font-weight:700;font-size:13px}
 #page .t a{color:#1a1a1a;text-decoration:underline;text-decoration-color:var(--cvac)}
-#page .d{font-size:inherit;font-weight:400;color:#444;margin-left:6px}
-#page .s{color:#444;font-size:inherit;margin-top:0}
-#page ul{margin:1px 0 0;padding-left:17px}
-#page p{margin:1px 0 0}
+#page .d{font-size:11.5px;font-weight:600;color:#555;white-space:nowrap;margin-left:auto;text-align:right}
+#page .s{color:#555;font-size:11.5px;margin-top:1px}
+#page ul{margin:2px 0 0;padding-left:18px}
+#page p{margin:2px 0 0}
 #page .top{display:flex;justify-content:space-between;gap:16px;align-items:center}
-#page .top>div{min-width:0}
-#page .top img{width:70px;height:70px;flex:none;border-radius:0;object-fit:cover}
+#page .top img{width:92px;height:92px;border-radius:0;object-fit:cover}
 
-/* Single-column skills in natural reading order. */
-#page .tech-cols{margin-bottom:2px}
-#page .tech-item{display:block;margin-bottom:var(--cv-tech);font-size:inherit;line-height:inherit;position:relative}
+/* 2-column technologies layout */
+#page .tech-cols{columns:2;column-gap:24px;margin-bottom:4px}
+#page .tech-item{break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;display:block;margin-bottom:6px;font-size:12px;line-height:1.45;position:relative}
 #page .tech-item b{color:#111;font-weight:700}
 
 /* Left panel collapsible groups */
@@ -113,12 +105,18 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .ctl button{padding:1px 7px;font-size:12px;background:#fff;color:#222;border-color:#bbb}
 .empty{color:#999;text-align:center;margin-top:120px}
 
+#fitStatus{width:100%;max-width:794px;font-size:12px;color:var(--mut)}
+#fitStatus[data-overflow="true"]{font-weight:600;color:var(--tx)}
+#printWarning{display:none}
+button:disabled{opacity:.5;cursor:not-allowed}
+#page[data-measure] .ctl,#page[data-measure] .empty{display:none!important}
+
 @media print{
  @page{size:A4;margin:0}
  html,body{margin:0!important;padding:0!important;background:#fff!important;height:auto!important;overflow:visible!important}
  body>header,#left,.tool,#fitStatus,.ctl,.empty{display:none!important}
  #view,#build,#right,#pagebox{display:block!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;margin:0!important;padding:0!important;overflow:visible!important;transform:none!important;background:none!important}
- #page{position:static!important;width:210mm!important;min-height:0!important;height:auto!important;margin:0!important;transform:none!important;box-shadow:none!important;overflow:visible!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ #page{position:static!important;width:210mm!important;min-height:0!important;height:auto!important;margin:0!important;padding:12mm 14mm!important;transform:none!important;box-shadow:none!important;overflow:visible!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
  #pagebox[data-overflow="true"] #page{display:none!important}
  #pagebox[data-overflow="true"] #printWarning{display:block;padding:15mm;font:12pt Arial,sans-serif;color:#111}
 }
@@ -126,7 +124,7 @@ button:disabled{opacity:.5;cursor:not-allowed}
 </head>
 <body>
 <header>
- <h1>My CV Builder <small style="font-size:10px;color:var(--mut);font-weight:400">v2.2 · EN/FR</small></h1>
+ <h1>My CV Builder <small style="font-size:10px;color:var(--mut);font-weight:400">v2.3 · EN/FR</small></h1>
  <button id="tInfo" class="on">1. My Info</button>
  <button id="tCV">2. Create CV</button>
  <span class="sp"></span>
@@ -237,7 +235,6 @@ function normalizeState(){
  if(S.cvs){
   S.cvs.forEach(c=>{
    if(!c.lang)c.lang='en';
-   if(!['full','short','brief'].includes(c.projectDetail))c.projectDetail='full';
     c.headline=normBi(c.headline);
   });
  }
@@ -570,22 +567,18 @@ function viewCV(){
   <input type="color" id="ac" value="${c.accent}" title="Accent color">
   <label style="margin:0"><input type="checkbox" id="sp" ${c.photo?'checked':''} style="width:auto"> Photo</label>
   <button class="pri" id="pdf">Download PDF</button></div>
- <div class="tool"><label for="projectDetail" style="margin:0">Project details:</label>
-  <select id="projectDetail" style="width:auto"><option value="full" ${c.projectDetail!=='short'&&c.projectDetail!=='brief'?'selected':''}>Full descriptions</option><option value="short" ${c.projectDetail==='short'?'selected':''}>First 2 bullets</option><option value="brief" ${c.projectDetail==='brief'?'selected':''}>First bullet only</option></select>
-  <small style="color:var(--mut)">One-page A4 · ATS layout · 10 pt minimum body text</small></div>
  <div id="fitStatus" role="status" aria-live="polite"></div>
- <div id="pagebox"><div id="page"></div><div id="printWarning">CV exceeds one A4 page. Return to the builder and shorten descriptions or choose compact project details before exporting.</div></div></div></div>`;
+ <div id="pagebox"><div id="page"></div><div id="printWarning">CV exceeds one A4 page. Shorten the CV before exporting.</div></div></div></div>`;
 
  $('#cs').onchange=e=>{S.cur=e.target.value;save();viewCV()};
  $('#cvLang').onchange=e=>{c.lang=e.target.value;save();viewCV()};
- $('#cn').onclick=()=>{const n=prompt('Name of the new CV (e.g. AI/ML Engineer)');if(!n)return;const d={id:uid(),name:n,lang:c.lang||'en',headline:{en:'',fr:''},ids:[],accent:c.accent,photo:c.photo,projectDetail:c.projectDetail||'full'};S.cvs.push(d);S.cur=d.id;save();viewCV()};
+ $('#cn').onclick=()=>{const n=prompt('Name of the new CV (e.g. AI/ML Engineer)');if(!n)return;const d={id:uid(),name:n,lang:c.lang||'en',headline:{en:'',fr:''},ids:[],accent:c.accent,photo:c.photo};S.cvs.push(d);S.cur=d.id;save();viewCV()};
  $('#cr').onclick=()=>{const n=prompt('New name',c.name);if(n){c.name=n;save();viewCV()}};
  $('#cd').onclick=()=>{if(S.cvs.length<2){alert('You need at least one CV');return}if(confirm('Delete this CV? (your saved info stays)')){S.cvs=S.cvs.filter(x=>x!==c);S.cur=S.cvs[0].id;save();viewCV()}};
  $('#hl').oninput=e=>{c.headline=normBi(c.headline);c.headline[c.lang]=e.target.value;save();page()};
  $('#ac').oninput=e=>{c.accent=e.target.value;save();page()};
  $('#sp').onchange=e=>{c.photo=e.target.checked;save();page()};
- $('#projectDetail').onchange=e=>{c.projectDetail=e.target.value;save();page()};
- $('#pdf').onclick=()=>{if(fit())window.print()};
+ $('#pdf').onclick=()=>{if(measureFit())window.print()};
 
  $('#left').onclick=e=>{
   const b=e.target.closest('button');if(!b)return;
@@ -669,27 +662,20 @@ function left(){
 
 function fmt(t){if(!t)return'';const L=t.split('\n').filter(x=>x.trim());let h='',ul=false;L.forEach(l=>{if(/^\s*[-•]\s+/.test(l)){if(!ul){h+='<ul>';ul=true}h+='<li>'+esc(l.replace(/^\s*[-•]\s+/,''))+'</li>'}else{if(ul){h+='</ul>';ul=false}h+='<p>'+esc(l)+'</p>'}});return h+(ul?'</ul>':'')}
 
-// Explicit display choice; never modify the original saved descriptions.
-function shortProjectText(text,mode){
- const max=mode==='brief'?1:mode==='short'?2:Infinity;
- let bullets=0;
- return text.split('\n').filter(line=>!/^\s*[-•]\s+/.test(line)||++bullets<=max).join('\n');
-}
-
 function page(){
  const c=cv(), p=S.profile, pg=$('#page');
  const l=c.lang||'en';
  pg.style.setProperty('--cvac',c.accent);
 
  const ct=[];
- if(p.phone) ct.push(`<span class="ct-item">${esc(p.phone)}</span>`);
- if(p.email) ct.push(`<a class="ct-item" href="mailto:${esc(p.email)}">${esc(p.email)}</a>`);
- if(p.city) ct.push(`<span class="ct-item">${esc(p.city)}</span>`);
- if(p.github) ct.push(`<a class="ct-item" href="${esc(url(p.github))}" target="_blank" rel="noopener">GitHub: ${esc(extractUser(p.github))}</a>`);
- if(p.linkedin) ct.push(`<a class="ct-item" href="${esc(url(p.linkedin))}" target="_blank" rel="noopener">LinkedIn: ${esc(extractUser(p.linkedin))}</a>`);
+ if(p.phone) ct.push(`<span class="ct-item">${ICONS.phone}<span>${esc(p.phone)}</span></span>`);
+ if(p.email) ct.push(`<a class="ct-item" href="mailto:${esc(p.email)}">${ICONS.email}<span>${esc(p.email)}</span></a>`);
+ if(p.city) ct.push(`<span class="ct-item">${ICONS.pin}<span>${esc(p.city)}</span></span>`);
+ if(p.github) ct.push(`<a class="ct-item" href="${esc(url(p.github))}" target="_blank" rel="noopener">${ICONS.github}<span>${esc(extractUser(p.github))}</span></a>`);
+ if(p.linkedin) ct.push(`<a class="ct-item" href="${esc(url(p.linkedin))}" target="_blank" rel="noopener">${ICONS.linkedin}<span>${esc(extractUser(p.linkedin))}</span></a>`);
 
  const headline=tVal(c.headline,l)||tVal(p.headline,l);
- let h=`<div class="top"><div><h1>${esc(p.name)}</h1><div class="hl">${esc(headline)}</div><div class="ct">${ct.join('<span class="ct-sep"> | </span>')}</div></div>${c.photo&&p.photo?`<img src="${p.photo}" alt="">`:''}</div>`;
+ let h=`<div class="top"><div><h1>${esc(p.name)}</h1><div class="hl">${esc(headline)}</div><div class="ct">${ct.join('<span class="ct-sep">|</span>')}</div></div>${c.photo&&p.photo?`<img src="${p.photo}" alt="">`:''}</div>`;
 
  let any=false;
  TYPES.forEach(([t,typeLabel])=>{
@@ -713,13 +699,13 @@ function page(){
    h+=a.map(i=>{
     const itemTitle=tVal(i.title,l);
     const itemSub=tVal(i.sub,l);
-    const itemText=t==='project'?shortProjectText(tVal(i.text,l),c.projectDetail):tVal(i.text,l);
+    const itemText=tVal(i.text,l);
     if(t==='certificate'){
      const title=i.link?`<a href="${esc(url(i.link))}" target="_blank" rel="noopener noreferrer">${esc(itemTitle)}</a>`:esc(itemTitle);
      const description=itemText.trim().replace(/\s+/g,' ');
      return `<div class="it cert-item"><div class="ctl"><button data-a="up" data-id="${i.id}">↑</button><button data-a="down" data-id="${i.id}">↓</button><button data-a="rm" data-id="${i.id}">✕</button></div><span class="t">${title}</span>${description?' : '+esc(description):''}</div>`;
     }
-    return `<div class="it"><div class="ctl"><button data-a="up" data-id="${i.id}">↑</button><button data-a="down" data-id="${i.id}">↓</button><button data-a="rm" data-id="${i.id}">✕</button></div><div class="it-head"><span class="t">${i.link?`<a href="${esc(url(i.link))}" target="_blank">${esc(itemTitle)}</a>`:esc(itemTitle)}</span>${i.date?`<span class="d">| ${esc(i.date)}</span>`:''}</div>${itemSub?`<div class="s">${esc(itemSub)}</div>`:''}${fmt(itemText)}</div>`;
+    return `<div class="it"><div class="ctl"><button data-a="up" data-id="${i.id}">↑</button><button data-a="down" data-id="${i.id}">↓</button><button data-a="rm" data-id="${i.id}">✕</button></div><div class="it-head"><span class="t">${i.link?`<a href="${esc(url(i.link))}" target="_blank">${esc(itemTitle)}</a>`:esc(itemTitle)}</span>${i.date?`<span class="d">${esc(i.date)}</span>`:''}</div>${itemSub?`<div class="s">${esc(itemSub)}</div>`:''}${fmt(itemText)}</div>`;
    }).join('');
   }
  });
@@ -734,41 +720,41 @@ function page(){
  fit();
 }
 
-// Use actual content height at A4 width; reserve 3 mm for print rounding.
+// Keep the original preview and print typography. Measure at the exact original
+// A4 print width and padding, and reject overflow rather than scaling the PDF.
 function measureFit(){
  const pg=$('#page'),b=$('#pagebox');
  if(!pg||!b)return false;
- pg.setAttribute('data-measure','');
+ const sample=pg.cloneNode(true);
+ sample.setAttribute('data-measure','');
+ sample.setAttribute('aria-hidden','true');
+ sample.style.cssText='position:absolute!important;display:block!important;left:-20000px!important;top:0!important;transform:none!important;box-shadow:none!important;width:210mm!important;min-height:0!important;height:auto!important;margin:0!important;padding:12mm 14mm!important;overflow:visible!important;visibility:hidden!important;';
+ document.body.appendChild(sample);
+ const height=sample.getBoundingClientRect().height;
+ sample.remove();
  const limit=(297-3)*96/25.4;
- let fits=false,height=0;
- for(const mode of ['normal','compact','tight']){
-  pg.dataset.density=mode;
-  height=pg.offsetHeight;
-  if(height<=limit){fits=true;break}
- }
- pg.removeAttribute('data-measure');
+ const fits=height>0&&height<=limit;
  b.dataset.overflow=String(!fits);
- const status=$('#fitStatus'),pdf=$('#pdf');
+ const pdf=$('#pdf'),status=$('#fitStatus');
  if(pdf)pdf.disabled=!fits;
  if(status){
-  const c=cv(),count=S.items.filter(i=>i.type==='project'&&c.ids.includes(i.id)).length;
   status.dataset.overflow=String(!fits);
-  status.textContent=(fits?'Fits on 1 A4 page · '+pg.dataset.density+' spacing':'Too long by about '+Math.ceil((height-limit)*25.4/96)+' mm · PDF export locked. Choose fewer bullets or shorten text.')+' · '+count+'/3 target projects selected';
+  status.textContent=fits?'Fits on 1 A4 page':'Exceeds one A4 page by about '+Math.max(0,Math.ceil((height-limit)*25.4/96))+' mm. Shorten your CV to enable PDF export.';
  }
  return fits;
 }
 function fit(){
  const b=$('#pagebox'),pg=$('#page'),right=$('#right');
- if(!b||!pg||!right)return false;
+ if(!b||!pg||!right)return;
  pg.style.transform='none';
- const fits=measureFit();
  const k=Math.min(1,Math.max(1,right.clientWidth-24)/pg.offsetWidth);
  b.style.width=pg.offsetWidth*k+'px';
  b.style.height=pg.offsetHeight*k+'px';
  pg.style.transform='scale('+k+')';
- return fits;
+ measureFit();
 }
 addEventListener('resize',fit);
+addEventListener('beforeprint',measureFit);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 
 /* ---------- shell ---------- */
